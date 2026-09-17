@@ -69,10 +69,10 @@ const files = deck.slides.map((s, i) => {
 <link rel="stylesheet" href="${css(`themes/${deck.theme}.css`)}">
 <link rel="stylesheet" href="${css('core/engine.css')}">
 </head><body>
-<div class="slide x-slide${tone}" data-layout="${s.layout}">
+<div class="slide x-slide${tone}${deck.video ? ' x-video' : ''}" data-layout="${s.layout}">
 ${L.render(s, ctx)}
-  ${deck.brand ? `<div class="brand"><span class="mark"></span>${esc(deck.brand)}</div>` : ''}
-  ${i > 0 ? `<div class="pageno">${no}</div>` : ''}
+  ${deck.brand && !deck.video ? `<div class="brand"><span class="mark"></span>${esc(deck.brand)}</div>` : ''}
+  ${i > 0 && !deck.video ? `<div class="pageno">${no}</div>` : ''}
 </div></body></html>`;
   const name = `${no}_${s.layout}.html`;
   writeFileSync(join(htmlDir, name), html);

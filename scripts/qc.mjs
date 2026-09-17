@@ -67,6 +67,8 @@ export async function checkSlide(page) {
       return `<${el.tagName.toLowerCase()}${cls}>「${(el.textContent || '').trim().slice(0, 18)}」`;
     };
     const isDeco = el => !!el.closest('.deco, [data-decor], .section-num, .ghost, .quote-mark');
+    // 動画用は下20%（テロップの帯）を安全域から外す
+    if (slide.classList.contains('x-video')) SAFE = { ...SAFE, bottom: Math.round(H * 0.8) - 20 };
     const isChrome = el => !!el.closest('.brand, .pageno');
     const visible = el => { const cs = getComputedStyle(el); return cs.visibility !== 'hidden' && cs.display !== 'none' && +cs.opacity > 0.05; };
 
@@ -280,6 +282,9 @@ export async function checkSlide(page) {
     const fillY = Math.max(0, (Math.min(cBottom, SAFE.bottom) - Math.max(cTop, SAFE.top)) / (SAFE.bottom - SAFE.top));
     const fillX = Math.max(0, (Math.min(cRight, SAFE.right) - Math.max(cLeft, SAFE.left)) / (SAFE.right - SAFE.left));
     const bottomGap = SAFE.bottom - cBottom;
+    const videoBottom = Math.max(0, ...contentEls.filter(r => r.width > 1 && r.height > 1 && !(r.width >= W - 2 && r.height >= H - 2)).map(r => r.bottom));
+    if (slide.classList.contains('x-video') && videoBottom > H * 0.8 + 2)
+      add('error', 'VIDEO_BAND', `動画のテロップ帯（下20%・${Math.round(H * 0.8)}px より下）に中身が入っている（下端 ${Math.round(videoBottom)}px）`, '文字数・項目を減らす／2枚に分ける／図の少ない型にする', '');
 
     // 画素ベース: 前景（背景色と違う画素）の重心と空きブロック率
     const grid = 24; let empty = 0, total = 0, sx = 0, sy = 0, sw = 0, lumSum = 0;

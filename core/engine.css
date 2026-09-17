@@ -31,6 +31,8 @@
   background: var(--surface); color: var(--fg);
   word-break: auto-phrase; line-break: strict;
 }
+/* 動画用（deck.json の "video": true）: 下20%＝1080×0.2＝216px は動画のテロップが重なる帯なので中身を置かない */
+.x-slide.x-video { padding-bottom: 236px; }
 .x-slide.x-dark {
   --surface: color-mix(in srgb, var(--ink) 96%, black);
   --card: color-mix(in srgb, var(--ink) 84%, var(--bg));
@@ -475,6 +477,7 @@
 .x-photo-scrim { inset: 0; background: linear-gradient(90deg, rgba(8, 12, 22, .9) 0%, rgba(8, 12, 22, .78) 42%, rgba(8, 12, 22, .2) 78%, rgba(8, 12, 22, .05) 100%), linear-gradient(0deg, rgba(8, 12, 22, .7) 0%, transparent 40%); }
 .x-photo-copy { position: absolute; z-index: 2; left: 120px; bottom: 170px; max-width: 1460px; }
 .x-photo-copy .x-kicker { margin-bottom: 30px; }
+.x-slide.x-video .x-photo-copy { bottom: 256px; }
 .x-photo-message { font-family: var(--font-display); font-size: 100px; font-weight: 900; line-height: 1.25; color: #fff; }
 .x-photo-message em { color: color-mix(in srgb, var(--accent) 55%, white); }
 .x-photo-sub { margin-top: 30px; font-size: 38px; line-height: 1.6; color: rgba(255, 255, 255, .92); }
@@ -507,6 +510,9 @@
 .x-sum-count .x-u { margin: 44px 0 0; font-size: 44px; line-height: 1.2; }
 .x-sum-next { display: flex; flex-direction: column; gap: 12px; padding-top: 28px; border-top: 3px solid color-mix(in srgb, white 40%, transparent); font-size: 34px; font-weight: 800; line-height: 1.45; }
 .x-sum-next-label { font-size: 24px; letter-spacing: .16em; opacity: .9; }
+.x-slide.x-video .x-sum-count .x-n { font-size: 180px; }
+.x-slide.x-video .x-sum-count .x-u { margin-top: 24px; }
+.x-slide.x-video .x-sum-panel { padding: 40px 48px; }
 .x-sum-next em { color: inherit; text-decoration: underline; text-underline-offset: 8px; }
 .x-sum-list { list-style: none; display: grid; grid-template-rows: repeat(var(--n), minmax(0, 1fr)); }
 .x-sum-list li { display: flex; align-items: center; gap: 36px; border-bottom: 3px solid var(--hair); }

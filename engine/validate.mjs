@@ -20,6 +20,8 @@ export function validateDeck(deck, deckDir, root) {
   if (!deck || !Array.isArray(deck.slides) || !deck.slides.length) { E('deck', 'slides が空', 'reference/examples/ の deck.json を真似て slides を書く'); return { errors, warns }; }
   if (!deck.theme || !existsSync(join(root, 'themes', `${deck.theme}.css`))) E('deck.theme', `テーマ「${deck.theme}」が無い`, 'themes/ にあるテーマ名（corporate / fresh / pop / tech など）を書く');
 
+  if (deck.video !== undefined && typeof deck.video !== 'boolean') E('deck.video', `video は true / false で書く（今: ${JSON.stringify(deck.video)}）`, '動画に使うスライドなら "video": true、それ以外は書かない');
+
   const slides = deck.slides;
   slides.forEach((s, i) => {
     const id = `${String(i + 1).padStart(2, '0')}（${s.layout || '型なし'}）`;
