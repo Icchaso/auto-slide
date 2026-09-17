@@ -1,0 +1,109 @@
+/* =====================================================================
+   SlideSmith theme: fresh — 爽やか・クリア
+   雰囲気: 透明感 / 軽やか / クリーン。SaaS紹介・会社案内・採用資料向き。
+   手法: ほぼ白の地 × ネイビーの引き締め文字 × スカイブルー。
+         淡い青の円モチーフと白〜淡青の軽いグラデで「空気感」を作る。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+.slide {
+  /* --- 配色: 白地に青の透明感 --- */
+  --bg:       #F7FBFE;
+  --bg-soft:  #FFFFFF;
+  --ink:      #16294D;   /* ネイビー（引き締め役） */
+  --ink-2:    #3D5479;
+  --muted:    #6E82A3;
+  --line:     #D9E8F5;   /* 淡青の罫線 */
+  --accent:   #1E8FDE;   /* スカイブルー */
+  --accent-2: #A9D5F4;   /* 淡青（罫・下線・地の差し色） */
+  --on-accent:#FFFFFF;
+
+  /* --- カバー面: 白 → 淡青の軽いグラデ（重い濃色にしない） --- */
+  --cover-bg:    linear-gradient(150deg, #FFFFFF 0%, #EDF6FD 46%, #D8ECFA 100%);
+  --cover-ink:   #16294D;
+  --cover-muted: #5C749B;
+
+  /* --- 字組み --- */
+  --font-display: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.02em;
+
+  /* --- 形状: まろやか + 極薄の影 --- */
+  --radius: 18px;
+  --radius-sm: 12px;
+  --card-border: 1px solid var(--line);
+  --card-shadow: 0 6px 24px rgba(30, 110, 190, 0.07);
+  --ghost-opacity: 0.09;
+}
+
+/* 表紙・締め: 強調はスカイブルー、罫は青のグラデーション */
+.cover-title { font-weight: 900; }
+.cover-rule {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  height: 5px; width: 110px;
+}
+.closing-cta { box-shadow: 0 10px 28px rgba(30, 143, 222, 0.28); }
+
+/* バッジ: スカイブルー → 空色のグラデーションで軽やかに */
+.card .badge, .vlist .badge, .step .badge {
+  background: linear-gradient(135deg, var(--accent), #64B7EC);
+  box-shadow: 0 6px 18px rgba(30, 143, 222, 0.22);
+}
+
+/* 見出し強調語: 淡青のマーカーで「引く」強調 */
+.head h2 em {
+  background: linear-gradient(transparent 62%, rgba(169, 213, 244, 0.55) 62%);
+  padding: 0 2px;
+}
+
+/* 章番号: 淡い青のアウトライン数字（空気感） */
+.section-num { -webkit-text-stroke: 2px rgba(30, 143, 222, 0.3); color: transparent; }
+
+/* 表: ヘッダーはネイビーで引き締め */
+table.simple thead th { background: var(--ink); }
+
+/* 比較: 良い側はスカイブルー、悪い側は淡いグレー青 */
+.panel .panel-head { background: #E6EEF7; color: var(--ink-2); }
+
+/* タイムライン: 現在地ドットの輪をごく淡く */
+.tl-node.is-now .dot { box-shadow: 0 0 0 5px rgba(169, 213, 244, 0.6); }
+
+/* ---------------------------------------------------------------------
+   装飾: 淡い青の円（大・小）+ ゆるいグラデーションの帯（表紙・締め用）
+   使い方: <div class="deco deco-circle-lg"></div>
+           <div class="deco deco-circle-sm"></div>
+           <div class="deco deco-band"></div>
+   --------------------------------------------------------------------- */
+.deco-circle-lg {
+  right: -220px; top: -260px; width: 860px; height: 860px; border-radius: 50%;
+  background: radial-gradient(circle at 38% 38%,
+    rgba(169, 213, 244, 0.55), rgba(169, 213, 244, 0.18) 55%, transparent 72%);
+}
+.deco-circle-sm {
+  left: -140px; bottom: -180px; width: 480px; height: 480px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%,
+    rgba(30, 143, 222, 0.16), rgba(30, 143, 222, 0.05) 58%, transparent 74%);
+}
+.deco-band {
+  left: 0; bottom: 0; width: 100%; height: 220px;
+  background: linear-gradient(4deg,
+    rgba(169, 213, 244, 0.35) 0%, rgba(216, 236, 250, 0.15) 55%, transparent 80%);
+}
+
+/* ---------------------------------------------------------------------
+   Phase 2/3 — 明るい地は「淡い青の重なり」で奥行きを作る
+   --------------------------------------------------------------------- */
+.slide {
+  --hero-border: 1px solid rgba(30, 143, 222, 0.22);
+  --hero-shadow: 0 14px 44px rgba(30, 110, 190, 0.1);
+}
+
+/* 透かしタイポ: 淡青のアウトラインで空気に溶かす */
+.ghost { -webkit-text-stroke-color: rgba(30, 143, 222, 0.16); }
+.on-cover .ghost { -webkit-text-stroke-color: rgba(30, 143, 222, 0.13); }
+
+/* サブ指標チップ: アイコンは淡青の丸面 */
+.chip .ico { background: rgba(169, 213, 244, 0.35); border: 1px solid var(--line); }
+
+/* bars: 主役バーはスカイブルーのグラデ */
+.bar-row.is-hero .fill { background: linear-gradient(90deg, var(--accent), #64B7EC); }

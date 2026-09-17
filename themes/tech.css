@@ -1,0 +1,120 @@
+/* =====================================================================
+   SlideSmith theme: tech — テック・フューチャー
+   雰囲気: 未来 / 先端 / ダーク。SaaS発表・AI/ITセミナー・スタートアップピッチ向き。
+   手法: ほぼ黒の濃紺地 × エレクトリックブルー〜シアンの発光アクセント、
+         幾何学系英数フォント + 薄いグリッド線。コントラスト最優先。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap');
+
+.slide {
+  /* --- 配色: 全面ダーク --- */
+  --bg:       #060B18;
+  --bg-soft:  #0B1426;
+  --ink:      #EAF3FF;
+  --ink-2:    #B9C9E2;
+  --muted:    #7E92B4;
+  --line:     #1C2A45;
+  --accent:   #3EE0FF;   /* シアン（発光の主役） */
+  --accent-2: #5B8CFF;   /* エレクトリックブルー（罫・差し色） */
+  --on-accent:#04121F;   /* シアン上は濃色文字でコントラスト確保 */
+
+  /* --- カバー面: 本文よりさらに深い闇 --- */
+  --cover-bg:    #030711;
+  --cover-ink:   #F0F7FF;
+  --cover-muted: #8FA4C6;
+
+  /* --- 字組み: 英数は幾何学系、日本語はZen Kaku Gothic New --- */
+  --font-display: "Space Grotesk", "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.03em;
+
+  /* --- 形状: シャープ + 発光 --- */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --card-border: 1px solid rgba(62, 224, 255, 0.28);
+  --card-shadow: 0 0 40px rgba(62, 224, 255, 0.07);
+  --mark-radius: 2px;
+  --ghost-opacity: 0.1;
+}
+
+/* 見出し・タイトルの強調語はシアン発光 */
+.cover-title em, .closing-title em {
+  color: var(--accent);
+  text-shadow: 0 0 40px rgba(62, 224, 255, 0.55);
+}
+.head h2 em { text-shadow: 0 0 32px rgba(62, 224, 255, 0.45); }
+.cover-rule {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  height: 4px; width: 120px;
+  box-shadow: 0 0 24px rgba(62, 224, 255, 0.6);
+}
+
+/* バッジ: シアン→ブルーのグラデーションで発光 */
+.card .badge, .vlist .badge, .step .badge {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 28px rgba(62, 224, 255, 0.35);
+}
+
+/* 数字はシアン発光 */
+.stat .value { text-shadow: 0 0 44px rgba(62, 224, 255, 0.4); }
+.section-num { -webkit-text-stroke: 2px rgba(62, 224, 255, 0.5); color: transparent; opacity: 0.6; }
+
+/* 表: ダーク地に合わせてヘッダーはブルー面、行地はカード色 */
+table.simple thead th { background: #14233F; color: var(--accent); border-bottom: 1px solid rgba(62, 224, 255, 0.4); }
+table.simple tbody td { background: var(--bg-soft); }
+table.simple tbody th { background: #0E1930; }
+
+/* 比較・CTA */
+.panel .panel-head { background: #22314F; color: var(--ink-2); }
+.panel.is-good .panel-head { background: var(--accent); color: var(--on-accent); }
+.vs { background: var(--accent-2); color: #FFFFFF; border-color: var(--bg); }
+.closing-cta {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+  box-shadow: 0 0 48px rgba(62, 224, 255, 0.4);
+}
+
+/* ---------------------------------------------------------------------
+   装飾: 薄いグリッド線 + 発光オーブ（表紙・締め用）
+   使い方: <div class="deco deco-grid"></div> <div class="deco deco-glow"></div>
+   --------------------------------------------------------------------- */
+.deco-grid {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(62, 224, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 224, 255, 0.05) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(ellipse at 70% 40%, #000 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 70% 40%, #000 0%, transparent 75%);
+}
+.deco-glow {
+  right: -260px; top: -260px; width: 900px; height: 900px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(62, 224, 255, 0.16), rgba(91, 140, 255, 0.06) 45%, transparent 70%);
+}
+.deco-beam {
+  left: 0; bottom: 0; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(62, 224, 255, 0.6), transparent);
+  box-shadow: 0 0 40px rgba(62, 224, 255, 0.5);
+}
+
+/* ---------------------------------------------------------------------
+   Phase 2 レイヤー/リッチレイアウト装飾 — ダーク地は「発光」で奥行きを作る
+   --------------------------------------------------------------------- */
+.slide {
+  --hero-border: 1px solid rgba(62, 224, 255, 0.38);
+  --hero-shadow: 0 0 72px rgba(62, 224, 255, 0.17);
+}
+
+/* 透かしタイポはシアンの残光に */
+.ghost, .on-cover .ghost { -webkit-text-stroke-color: rgba(62, 224, 255, 0.15); }
+
+/* ドーナツと主役数字は発光 */
+.donut .arc { filter: drop-shadow(0 0 16px rgba(62, 224, 255, 0.5)); }
+.hero-copy .delta .to { text-shadow: 0 0 36px rgba(62, 224, 255, 0.45); }
+
+/* サブ指標チップのアイコンは半透明シアン枠 */
+.chip .ico { background: rgba(62, 224, 255, 0.1); border: 1px solid rgba(62, 224, 255, 0.45); }
+
+/* bars: 主役バーと主役値も発光 */
+.bar-row.is-hero .fill { box-shadow: 0 0 30px rgba(62, 224, 255, 0.4); }
+.bar-row.is-hero .v { text-shadow: 0 0 30px rgba(62, 224, 255, 0.45); }

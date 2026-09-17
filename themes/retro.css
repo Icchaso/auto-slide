@@ -1,0 +1,127 @@
+/* =====================================================================
+   SlideSmith theme: retro — レトロポップ（昭和・純喫茶）
+   雰囲気: 懐かしい / あたたかい / 手ざわり。商店街イベント・カフェ・
+           雑貨・個人店向き。
+   手法: クリーム地 × 臙脂 / マスタード / 深緑 / 焦茶、
+         太枠 + 内側の二重細線、切手枠・スタンプ・ハーフトーンドット。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@500;700;900&display=swap');
+
+.slide {
+  /* --- 配色 --- */
+  --bg:       #F6EEDC;
+  --bg-soft:  #FCF6E7;
+  --ink:      #3B2A1E;   /* 焦茶 */
+  --ink-2:    #5D4632;
+  --muted:    #7C6247;
+  --line:     #3B2A1E;
+  --accent:   #A03A2C;   /* 臙脂 */
+  --accent-2: #2E5941;   /* 深緑 */
+  --accent-3: #D9A62E;   /* マスタード */
+  --on-accent:#FBF4E4;
+
+  /* --- カバー面: クリーム地のまま、切手枠で額装する --- */
+  --cover-bg:    #F6EEDC;
+  --cover-ink:   #3B2A1E;
+  --cover-muted: #7C6247;
+
+  /* --- 字組み --- */
+  --font-display: "Zen Kaku Gothic Antique", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Zen Kaku Gothic Antique", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.05em;
+
+  /* --- 形状: 角は硬め。太枠 + 内側二重線 + べた落ち影 --- */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --card-border: 3px solid var(--ink);
+  --card-shadow: 6px 6px 0 rgba(59, 42, 30, 0.14),
+                 inset 0 0 0 6px var(--bg-soft),
+                 inset 0 0 0 7px rgba(59, 42, 30, 0.45);
+  --mark-radius: 2px;
+  --kicker-bar: 5px;
+  --ghost-opacity: 0.12;
+}
+
+/* 見出しの強調語はマスタードのマーカー */
+.head h2 em {
+  color: inherit;
+  background: linear-gradient(transparent 60%, rgba(217, 166, 46, 0.55) 60%, rgba(217, 166, 46, 0.55) 94%, transparent 94%);
+  padding: 0 6px; margin: 0 -2px;
+}
+
+/* 表紙: 強調は臙脂、罫は二重線（レトロ活版風） */
+.cover-title em { color: var(--accent); }
+.cover-rule {
+  width: 130px; height: 10px; background: transparent; border-radius: 0;
+  border-top: 3px solid var(--accent); border-bottom: 3px solid var(--accent);
+}
+.closing-title em { color: var(--accent); }
+.closing-cta {
+  box-shadow: 5px 5px 0 rgba(59, 42, 30, 0.28);
+  border: 3px solid var(--ink); border-radius: 12px;
+}
+
+/* バッジは臙脂 → 深緑 → マスタードのローテーション */
+.card:nth-child(3n+1) .badge, .vlist li:nth-child(3n+1) .badge, .step:nth-child(3n+1) .badge { background: var(--accent); }
+.card:nth-child(3n+2) .badge, .vlist li:nth-child(3n+2) .badge, .step:nth-child(3n+2) .badge { background: var(--accent-2); }
+.card:nth-child(3n)   .badge, .vlist li:nth-child(3n)   .badge, .step:nth-child(3n)   .badge { background: var(--accent-3); color: var(--ink); }
+
+/* 比較: 帯があるパネルは内側線を外す（帯とケンカするため） */
+.panel { box-shadow: 6px 6px 0 rgba(59, 42, 30, 0.14); }
+.panel .panel-head { background: #8C6F52; color: #FBF4E4; }
+.panel.is-good .panel-head { background: var(--accent-2); }
+.panel.is-good li::before { color: var(--accent-2); }
+.vs { background: var(--accent-3); color: var(--ink); border: 5px solid var(--ink); }
+
+/* テーブル・章扉 */
+table.simple thead th { background: var(--ink); color: var(--bg); }
+table.simple td.hot { color: var(--accent); }
+.section-num { color: var(--accent-3); opacity: 0.45; }
+
+/* ---------------------------------------------------------------------
+   装飾（.deco 配下は QC 対象外）: 3種まで
+   1. deco-frame — 切手・チケット風の外周二重枠
+   2. deco-dots  — ハーフトーンドット（-tr / -tl で位置指定）
+   3. deco-stamp — 消印風の丸スタンプ（中にテキストを入れる）
+   --------------------------------------------------------------------- */
+.deco-frame {
+  inset: 36px; border: 3px solid var(--accent); border-radius: 6px;
+}
+.deco-frame::before {
+  content: ""; position: absolute; inset: 8px;
+  border: 1px dashed var(--accent); border-radius: 3px; opacity: 0.75;
+}
+
+.deco-dots {
+  width: 330px; height: 240px;
+  background-image: radial-gradient(rgba(59, 42, 30, 0.30) 3px, transparent 3.5px);
+  background-size: 26px 26px;
+}
+.deco-dots-tr { right: 72px; top: 72px; }
+.deco-dots-tl { left: 72px; top: 72px; }
+
+.deco-stamp {
+  right: 130px; bottom: 160px; width: 230px; height: 230px;
+  border-radius: 50%; border: 3px solid var(--accent);
+  color: var(--accent); opacity: 0.9; transform: rotate(-8deg);
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font-family: var(--font-display); font-size: 34px; font-weight: 900;
+  letter-spacing: 0.08em; line-height: 1.5;
+}
+.deco-stamp::before {
+  content: ""; position: absolute; inset: 9px;
+  border: 2px dashed var(--accent); border-radius: 50%;
+}
+
+/* ---------------------------------------------------------------------
+   Phase 2 装飾トークン（リッチレイアウト用・ジオメトリは触らない）
+   ヒーローカードは1度傾け、太枠＋ずらし影のレトロ質感で
+   --------------------------------------------------------------------- */
+.slide {
+  --hero-tilt: 1deg;
+  --hero-border: 3px solid var(--ink);
+  --hero-shadow: 8px 8px 0 rgba(59, 42, 30, 0.16),
+                 inset 0 0 0 6px var(--bg-soft),
+                 inset 0 0 0 7px rgba(59, 42, 30, 0.45);
+  --sticker-border: 3px solid var(--ink);
+}

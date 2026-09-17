@@ -1,0 +1,93 @@
+/* =====================================================================
+   SlideSmith theme: warm — ナチュラル・オーガニック
+   雰囲気: 木漏れ日 / 手ざわり / 丁寧な暮らし。カフェ・雑貨・ワークショップ・食向き。
+   手法: 生成り地 × テラコッタ・オリーブ・ブラウンの低彩度配色、
+         丸すぎない角丸、極薄い有機的な円の装飾。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap');
+
+.slide {
+  /* --- 配色: 生成り × 大地の色 --- */
+  --bg:       #F7F1E8;
+  --bg-soft:  #FDFAF4;
+  --ink:      #40332A;
+  --ink-2:    #5F5045;
+  --muted:    #8C7B6B;
+  --line:     #E3D8C8;
+  --accent:   #B45A38;   /* テラコッタ */
+  --accent-2: #77804C;   /* オリーブ */
+  --on-accent:#FFF8F0;
+
+  /* --- カバー面: 少し深い生成り（軽やかさを保つ） --- */
+  --cover-bg:    #F1E8D9;
+  --cover-ink:   #40332A;
+  --cover-muted: #7C6C5C;
+
+  /* --- 字組み: 丸ゴシックで柔らかく --- */
+  --font-display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.04em;
+
+  /* --- 形状: 丸すぎない角丸 + ごく淡い影 --- */
+  --radius: 16px;
+  --radius-sm: 12px;
+  --card-border: 1px solid var(--line);
+  --card-shadow: 0 6px 22px rgba(94, 74, 55, 0.07);
+  --ghost-opacity: 0.12;
+}
+
+/* 見出しの強調語は下線で手ざわり感（マーカーより静かに） */
+.head h2 em {
+  color: var(--accent);
+  background: linear-gradient(transparent 82%, rgba(180, 90, 56, 0.22) 82%);
+  padding: 0 4px; margin: 0 -2px;
+}
+.cover-title em { color: var(--accent); }
+.closing-title em { color: var(--accent); }
+.cover-rule { background: var(--accent-2); height: 5px; width: 88px; border-radius: 3px; }
+
+/* バッジはテラコッタ⇄オリーブを交互に（賑やかすぎない2色） */
+.card:nth-child(2n)   .badge, .vlist li:nth-child(2n)   .badge, .step:nth-child(2n)   .badge { background: var(--accent-2); }
+.stat:nth-child(2n) .value { color: var(--accent-2); }
+
+/* 章扉の数字はオリーブの淡い透かし */
+.section-num { color: var(--accent-2); }
+
+/* 表: ヘッダーはブラウン */
+table.simple thead th { background: #5F5045; color: #F7F1E8; }
+table.simple td.hot { color: var(--accent); }
+
+/* 比較: NG側はグレージュ、OK側はオリーブ */
+.panel .panel-head { background: #A99A88; color: #FFF8F0; }
+.panel.is-good .panel-head { background: var(--accent-2); }
+.panel.is-good li::before { color: var(--accent-2); }
+.vs { background: var(--accent); color: var(--on-accent); border-color: var(--bg); }
+
+/* CTA はテラコッタ */
+.closing-cta { box-shadow: 0 8px 26px rgba(180, 90, 56, 0.28); }
+
+/* ---------------------------------------------------------------------
+   装飾: 極薄い有機的な円（木漏れ日）— 表紙・締め用
+   使い方: <div class="deco deco-komorebi"></div> <div class="deco deco-ring"></div>
+   --------------------------------------------------------------------- */
+.deco-komorebi {
+  right: -220px; top: -260px; width: 860px; height: 860px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, rgba(119, 128, 76, 0.16), rgba(119, 128, 76, 0.05) 55%, transparent 72%);
+}
+.deco-komorebi2 {
+  left: -180px; bottom: -240px; width: 640px; height: 640px; border-radius: 50%;
+  background: radial-gradient(circle at 60% 40%, rgba(180, 90, 56, 0.12), rgba(180, 90, 56, 0.04) 55%, transparent 72%);
+}
+.deco-ring {
+  right: 150px; bottom: 130px; width: 260px; height: 260px; border-radius: 50%;
+  border: 2px solid rgba(119, 128, 76, 0.3);
+}
+
+/* ---------------------------------------------------------------------
+   Phase 2 レイヤー装飾 — 紙の質感と、オリーブの静かな透かし
+   --------------------------------------------------------------------- */
+/* 透かしタイポはオリーブでごく淡く（木漏れ日の影のように） */
+.ghost, .on-cover .ghost { -webkit-text-stroke-color: rgba(119, 128, 76, 0.2); }
+
+/* timeline: 現在地ノードの見出しをテラコッタで少しだけ主役に */
+.tl-node.is-now h3 { color: var(--accent); }

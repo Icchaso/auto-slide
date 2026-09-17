@@ -1,0 +1,780 @@
+/* =====================================================================
+   SlideSmith core/base.css — 全テーマ共通の「骨格」
+   ---------------------------------------------------------------------
+   ・キャンバス: 1920 x 1080 (16:9)
+   ・ここには「レイアウトの幾何学」だけを置く。色・フォント・装飾は
+     テーマCSS（themes/*.css）がトークン（CSS変数）で注入する。
+   ・レイアウトは12種。HTMLは layouts/ のスニペット通りに書くこと。
+   ===================================================================== */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { width: 1920px; height: 1080px; }
+
+.slide {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  letter-spacing: var(--tracking, 0.02em);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------------------------------------------------------------
+   共通トークンのデフォルト値（テーマが上書きする）
+   --------------------------------------------------------------------- */
+.slide {
+  --pad-x: 128px;
+  --pad-y: 96px;
+  --radius: 20px;
+  --radius-sm: 14px;
+  --card-border: 1px solid var(--line);
+  --card-shadow: none;
+  /* カバー面（表紙・扉・締め）: 未指定ならインク色の濃面 */
+  --cover-bg: var(--ink);
+  --cover-ink: var(--bg);
+  --cover-muted: color-mix(in srgb, var(--bg) 62%, var(--ink));
+  /* 本文色: --ink-2 より一段濃い（「薄くて読みにくい」対策。テーマ側で上書き可） */
+  --ink-body: color-mix(in srgb, var(--ink-2) 72%, var(--ink));
+}
+
+/* ---------------------------------------------------------------------
+   日本語の改行制御（泣き別れ＝1〜2文字だけの行を構造的に防ぐ）
+   - 見出し系: 文節単位で折り返し（BudouX）＋行長のバランス調整
+   - 本文系: 最終行が極端に短くならないよう調整
+   --------------------------------------------------------------------- */
+h1, h2, h3, .k-line, .band, .quote-text, .closing-title, .cover-title {
+  text-wrap: balance; word-break: auto-phrase;
+}
+p, li, .lead, .desc, .cover-sub, .closing-sub { text-wrap: pretty; }
+
+/* ---------------------------------------------------------------------
+   共通チューム: ブランド名 / ページ番号 / 見出しブロック
+   --------------------------------------------------------------------- */
+.brand {
+  position: absolute; left: var(--pad-x); bottom: 54px;
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700; letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.brand .mark {
+  width: 12px; height: 12px; border-radius: var(--mark-radius, 50%);
+  background: var(--accent); display: inline-block;
+}
+.pageno {
+  position: absolute; right: var(--pad-x); bottom: 54px;
+  font-size: 22px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--muted); font-variant-numeric: tabular-nums;
+}
+.on-cover .brand, .on-cover .pageno { color: var(--cover-muted); }
+
+/* 見出しブロック（agenda/cards/list/compare/steps/stats/media/table 共通） */
+.head { position: absolute; left: var(--pad-x); top: var(--pad-y); right: var(--pad-x); }
+.head .kicker {
+  display: flex; align-items: center; gap: 16px;
+  font-family: var(--font-display);
+  font-size: 25px; font-weight: 700; letter-spacing: 0.2em;
+  color: var(--accent); margin-bottom: 24px;
+}
+.head .kicker::before { content: ""; width: 40px; height: var(--kicker-bar, 3px); background: var(--accent); }
+.head h2 {
+  font-family: var(--font-display);
+  font-size: 68px; font-weight: 700; line-height: 1.3; color: var(--ink);
+}
+.head h2 em { font-style: normal; color: var(--accent); }
+.head .lead { font-size: 32px; line-height: 1.65; color: var(--ink-body); margin-top: 20px; max-width: 1440px; }
+
+/* =====================================================================
+   1. cover — 表紙
+   ===================================================================== */
+.l-cover { background: var(--cover-bg); color: var(--cover-ink); }
+.cover-meta {
+  position: absolute; left: var(--pad-x); top: 132px;
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 700; letter-spacing: 0.14em; color: var(--cover-muted);
+}
+.cover-body { position: absolute; left: var(--pad-x); top: 330px; right: 360px; }
+.cover-body .eyebrow {
+  font-family: var(--font-display);
+  font-size: 27px; font-weight: 700; letter-spacing: 0.26em;
+  color: var(--accent); margin-bottom: 34px;
+}
+.cover-title {
+  font-family: var(--font-display);
+  font-size: 100px; font-weight: 800; line-height: 1.2; letter-spacing: 0.01em;
+}
+.cover-title em { font-style: normal; color: var(--accent); }
+.cover-rule { width: 96px; height: 6px; background: var(--accent-2, var(--accent)); margin: 44px 0 38px; border-radius: 3px; }
+.cover-sub { font-size: 34px; line-height: 1.65; color: var(--cover-muted); max-width: 1120px; }
+
+/* =====================================================================
+   2. agenda — 目次
+   ===================================================================== */
+.agenda {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); top: 380px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 34px 72px;
+  list-style: none; counter-reset: agenda;
+}
+.agenda li {
+  counter-increment: agenda;
+  display: flex; align-items: center; gap: 30px;
+  background: var(--bg-soft); border: var(--card-border); border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 34px 42px; min-height: 118px;
+}
+.agenda li::before {
+  content: counter(agenda, decimal-leading-zero);
+  font-family: var(--font-display);
+  font-size: 40px; font-weight: 800; color: var(--accent);
+  font-variant-numeric: tabular-nums; flex: none;
+}
+.agenda li .t { font-size: 35px; font-weight: 700; line-height: 1.4; }
+.agenda li .d { font-size: 26px; color: var(--ink-body); margin-top: 6px; line-height: 1.5; }
+
+/* =====================================================================
+   3. section — 章扉
+   ===================================================================== */
+.l-section { background: var(--cover-bg); color: var(--cover-ink); }
+.section-num {
+  position: absolute; right: 96px; top: 40px;
+  font-family: var(--font-display);
+  font-size: 560px; font-weight: 800; line-height: 1;
+  color: var(--accent); opacity: var(--ghost-opacity, 0.14);
+  font-variant-numeric: tabular-nums;
+}
+.section-body { position: absolute; left: var(--pad-x); top: 420px; right: 560px; }
+.section-body .eyebrow {
+  font-family: var(--font-display);
+  font-size: 26px; font-weight: 700; letter-spacing: 0.26em; color: var(--accent); margin-bottom: 30px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 84px; font-weight: 800; line-height: 1.25;
+}
+.section-sub { font-size: 32px; line-height: 1.65; color: var(--cover-muted); margin-top: 32px; max-width: 1060px; }
+
+/* =====================================================================
+   4. cards — カード並列（2〜4枚。--cols で指定）
+   ===================================================================== */
+.cards {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); top: 420px; bottom: 150px;
+  display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr); gap: 40px;
+}
+.card {
+  background: var(--bg-soft); border: var(--card-border); border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 48px 44px; position: relative; overflow: hidden;
+}
+.card .badge {
+  display: flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: var(--radius-sm);
+  background: var(--accent); color: var(--on-accent, #fff);
+  font-family: var(--font-display);
+  font-size: 30px; font-weight: 800; margin-bottom: 34px;
+}
+.card .badge.icon { font-size: 34px; }
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 40px; font-weight: 700; line-height: 1.35; margin-bottom: 20px;
+}
+.card p { font-size: 30px; line-height: 1.7; color: var(--ink-body); }
+.card .foot { position: absolute; left: 44px; bottom: 36px; font-size: 25px; font-weight: 700; color: var(--accent); }
+
+/* =====================================================================
+   5. list — 縦リスト（3〜4行）
+   ===================================================================== */
+.vlist {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); top: 400px;
+  display: flex; flex-direction: column; gap: 30px; list-style: none;
+}
+.vlist li {
+  display: grid; grid-template-columns: 96px 480px 1fr; align-items: center; gap: 44px;
+  background: var(--bg-soft); border: var(--card-border); border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 36px 48px; min-height: 150px;
+}
+.vlist .badge {
+  width: 82px; height: 82px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: var(--on-accent, #fff);
+  font-family: var(--font-display); font-size: 36px; font-weight: 800;
+}
+.vlist h3 { font-family: var(--font-display); font-size: 38px; font-weight: 700; line-height: 1.4; }
+.vlist p { font-size: 30px; line-height: 1.65; color: var(--ink-body); }
+
+/* =====================================================================
+   6. compare — 対比（BEFORE/AFTER・A/B）
+   ===================================================================== */
+.compare {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); top: 390px; bottom: 150px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+}
+.panel {
+  border-radius: var(--radius); overflow: hidden;
+  border: var(--card-border); box-shadow: var(--card-shadow);
+  background: var(--bg-soft);
+  display: flex; flex-direction: column;
+}
+.panel .panel-head {
+  padding: 26px 44px; font-family: var(--font-display);
+  font-size: 33px; font-weight: 800; letter-spacing: 0.06em;
+  background: var(--ink-2); color: var(--bg);
+}
+.panel.is-good .panel-head { background: var(--accent); color: var(--on-accent, #fff); }
+.panel ul {
+  list-style: none; padding: 44px 48px; display: flex; flex-direction: column; gap: 32px;
+  flex: 1; justify-content: center;
+}
+.panel li { font-size: 31px; line-height: 1.6; color: var(--ink-body); display: flex; gap: 18px; }
+.panel li::before { content: "×"; font-weight: 800; color: var(--muted); flex: none; }
+.panel.is-good li::before { content: "✓"; color: var(--accent); }
+.vs {
+  position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%);
+  width: 108px; height: 108px; border-radius: 50%;
+  background: var(--ink); color: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 34px; font-weight: 800;
+  z-index: 2; border: 6px solid var(--bg);
+}
+
+/* =====================================================================
+   7. steps — 手順・プロセス（3〜4段）
+   ===================================================================== */
+.steps {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); top: 430px;
+  display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr); gap: 88px;
+}
+.step { position: relative; }
+.step + .step::before {
+  content: "→"; position: absolute; left: -70px; top: 26px;
+  font-size: 46px; font-weight: 800; color: var(--accent);
+}
+.step .badge {
+  width: 84px; height: 84px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent); color: var(--on-accent, #fff);
+  font-family: var(--font-display); font-size: 36px; font-weight: 800;
+  margin-bottom: 34px;
+}
+.step h3 { font-family: var(--font-display); font-size: 38px; font-weight: 700; margin-bottom: 18px; line-height: 1.4; }
+.step p { font-size: 30px; line-height: 1.7; color: var(--ink-body); }
+.step .note { margin-top: 18px; font-size: 25px; font-weight: 700; color: var(--accent); }
+
+/* =====================================================================
+   8. stats — 数字インパクト（2〜4個）
+   ===================================================================== */
+.stats {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); top: 430px; bottom: 170px;
+  display: grid; grid-template-columns: repeat(var(--cols, 3), 1fr); gap: 40px;
+}
+.stat {
+  background: var(--bg-soft); border: var(--card-border); border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 52px 48px; display: flex; flex-direction: column; justify-content: center;
+}
+.stat .label { font-size: 28px; font-weight: 700; color: var(--muted); margin-bottom: 22px; }
+.stat .value {
+  font-family: var(--font-display);
+  font-size: 110px; font-weight: 800; line-height: 1; color: var(--accent);
+  font-variant-numeric: tabular-nums; letter-spacing: 0;
+}
+.stat .value .unit { font-size: 44px; font-weight: 800; margin-left: 8px; }
+.stat .desc { font-size: 28px; line-height: 1.6; color: var(--ink-body); margin-top: 24px; }
+
+/* =====================================================================
+   9. quote — 引用・声
+   ===================================================================== */
+.quote-wrap {
+  position: absolute; inset: 0; padding: 0 240px 90px;  /* 下padding=光学的センター（真ん中よりやや上） */
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+}
+.quote-mark {
+  font-family: Georgia, serif; font-size: 190px; line-height: 0.55;
+  color: var(--accent); margin-bottom: 14px;
+}
+.quote-text {
+  font-family: var(--font-display);
+  font-size: 80px; font-weight: 700; line-height: 1.5; max-width: 1460px;
+}
+.quote-text em { font-style: normal; color: var(--accent); }
+.quote-who { margin-top: 48px; font-size: 31px; color: var(--muted); display: flex; align-items: center; gap: 20px; }
+.quote-who::after { content: ""; width: 56px; height: 2px; background: var(--muted); }
+.quote-who::before { content: ""; width: 56px; height: 2px; background: var(--muted); }
+
+/* =====================================================================
+   10. media — テキスト + ビジュアル枠
+   ===================================================================== */
+.media-grid {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); top: 400px; bottom: 150px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+}
+.media-copy h3 { font-family: var(--font-display); font-size: 46px; font-weight: 700; line-height: 1.45; margin-bottom: 30px; }
+.media-copy p { font-size: 30px; line-height: 1.8; color: var(--ink-body); }
+.media-copy ul { list-style: none; margin-top: 34px; display: flex; flex-direction: column; gap: 20px; }
+.media-copy li { font-size: 29px; line-height: 1.6; color: var(--ink-body); display: flex; gap: 16px; }
+.media-copy li::before { content: "●"; font-size: 15px; line-height: 2.4; color: var(--accent); flex: none; }
+.media-box {
+  height: 100%; max-height: 520px; border-radius: var(--radius);
+  overflow: hidden; border: var(--card-border); box-shadow: var(--card-shadow);
+  background: var(--bg-soft);
+  display: flex; align-items: center; justify-content: center;
+}
+.media-box img { width: 100%; height: 100%; object-fit: cover; }
+.media-box .placeholder { font-size: 26px; font-weight: 700; color: var(--muted); letter-spacing: 0.1em; }
+
+/* =====================================================================
+   11. table — 表
+   ===================================================================== */
+.tablewrap { position: absolute; left: var(--pad-x); right: var(--pad-x); top: 390px; }
+table.simple { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 30px; }
+table.simple th, table.simple td { padding: 28px 40px; text-align: left; line-height: 1.5; }
+table.simple thead th {
+  font-family: var(--font-display); font-size: 27px; font-weight: 800; letter-spacing: 0.06em;
+  background: var(--ink); color: var(--bg);
+}
+table.simple thead th:first-child { border-radius: var(--radius-sm) 0 0 0; }
+table.simple thead th:last-child { border-radius: 0 var(--radius-sm) 0 0; }
+table.simple tbody th { font-weight: 700; background: var(--bg-soft); width: 380px; }
+table.simple tbody td { color: var(--ink-body); background: var(--bg); }
+table.simple tbody tr th, table.simple tbody tr td { border-bottom: 1px solid var(--line); }
+table.simple td.hot { color: var(--accent); font-weight: 800; }
+
+/* =====================================================================
+   12. closing — 締め・CTA
+   ===================================================================== */
+.l-closing { background: var(--cover-bg); color: var(--cover-ink); }
+.closing-wrap {
+  position: absolute; inset: 0; padding: 0 240px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+}
+.closing-wrap .eyebrow {
+  font-family: var(--font-display);
+  font-size: 27px; font-weight: 700; letter-spacing: 0.26em; color: var(--accent); margin-bottom: 44px;
+}
+.closing-title {
+  font-family: var(--font-display);
+  font-size: 84px; font-weight: 800; line-height: 1.35;
+}
+.closing-title em { font-style: normal; color: var(--accent); }
+.closing-sub { font-size: 33px; line-height: 1.7; color: var(--cover-muted); margin-top: 44px; }
+.closing-cta {
+  margin-top: 64px; padding: 28px 84px; border-radius: 999px;
+  background: var(--accent); color: var(--on-accent, #fff);
+  font-family: var(--font-display); font-size: 33px; font-weight: 800; letter-spacing: 0.04em;
+  box-shadow: var(--card-shadow);
+}
+
+/* ---------------------------------------------------------------------
+   装飾レイヤー: テーマが自由に使う（QC対象外にするため .deco を必ず付ける）
+   --------------------------------------------------------------------- */
+.deco { position: absolute; pointer-events: none; }
+
+/* =====================================================================
+   ★ レイヤーシステム — 「奥行き」の標準装備（Phase 2）
+   背景テクスチャ → 透かしタイポ → コンテンツ → 前景注釈 の4層。
+   すべて任意・HTMLに置くだけで発動。テーマはトークンで質感を変える。
+   ===================================================================== */
+
+/* 層1: 紙テクスチャ（ドット方眼）。<div class="deco layer-texture"></div> */
+.layer-texture {
+  inset: 0;
+  background-image: var(--texture,
+    radial-gradient(color-mix(in srgb, var(--ink) 9%, transparent) 2.5px, transparent 2.5px));
+  background-size: var(--texture-size, 44px 44px);
+}
+.on-cover .layer-texture {
+  background-image: var(--texture-cover,
+    radial-gradient(color-mix(in srgb, var(--cover-ink) 8%, transparent) 2.5px, transparent 2.5px));
+}
+
+/* 層2: 透かしタイポ。<div class="deco ghost" style="right:-30px; bottom:-60px;">×8.4</div> */
+.ghost {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: var(--ghost-size, 360px); line-height: 1; letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 3px color-mix(in srgb, var(--ink) 11%, transparent);
+}
+.on-cover .ghost { -webkit-text-stroke-color: color-mix(in srgb, var(--cover-ink) 11%, transparent); }
+
+/* 層4: 手書き風の前景注釈。図解の親要素(position:relative)内に置く
+   <div class="annot" style="left:-8px; top:-64px;">主役はこの数字！</div> */
+.annot {
+  position: absolute; transform: rotate(-4deg); z-index: 3;
+  font-family: var(--font-display); font-size: 25px; font-weight: 900; color: var(--accent);
+}
+.annot::after {
+  content: ""; position: absolute; left: 46%; top: 40px;
+  width: 3px; height: 30px; background: var(--accent);
+  transform: rotate(20deg); border-radius: 2px;
+}
+
+/* =====================================================================
+   13. hero-stat — ヒーロー数字（左=語り / 右=ドーナツ図解カード）
+   ===================================================================== */
+.hero-grid {
+  position: absolute; left: var(--pad-x); right: 118px; top: 118px; bottom: 128px;
+  display: grid; grid-template-columns: 620px 1fr; gap: 84px; align-items: center;
+}
+.story .kicker {
+  display: flex; align-items: center; gap: 16px;
+  font-family: var(--font-display);
+  font-size: 25px; font-weight: 800; letter-spacing: 0.22em; color: var(--accent);
+}
+.story .kicker::before { content: ""; width: 40px; height: var(--kicker-bar, 4px); background: var(--accent); border-radius: 3px; }
+.story h2 {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 76px; line-height: 1.24; color: var(--ink); margin-top: 30px;
+}
+.story h2 em { font-style: normal; color: var(--accent); }
+.story .body { font-size: 31px; line-height: 1.75; color: var(--ink-body); margin-top: 34px; max-width: 585px; }
+.story .note {
+  display: inline-flex; align-items: center; gap: 14px;
+  margin-top: 40px; padding: 16px 28px;
+  background: var(--bg-soft); border: var(--card-border); border-radius: 999px;
+  box-shadow: var(--card-shadow);
+  font-size: 23px; font-weight: 800; color: var(--ink);
+}
+.story .note::before { content: "※"; color: var(--accent); font-weight: 900; }
+
+.viz { position: relative; }
+.hero-card {
+  position: relative;
+  background: var(--bg-soft); border: var(--hero-border, var(--card-border));
+  border-radius: var(--radius); box-shadow: var(--hero-shadow, var(--card-shadow));
+  padding: 56px 60px 48px; transform: rotate(var(--hero-tilt, 0deg));
+  display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: center;
+}
+.hero-card .sticker {
+  position: absolute; top: -30px; right: 44px; transform: rotate(5deg);
+  background: var(--accent); color: var(--on-accent, #fff);
+  font-family: var(--font-display); font-size: 23px; font-weight: 900; letter-spacing: 0.08em;
+  padding: 12px 26px; border-radius: 999px; border: var(--sticker-border, none);
+  box-shadow: var(--card-shadow);
+}
+.donut { width: 300px; height: 300px; position: relative; }
+.donut svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.donut .track { fill: none; stroke: var(--line); stroke-width: 26; }
+.donut .arc   { fill: none; stroke: var(--accent); stroke-width: 26; stroke-linecap: round; }
+.donut .in {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+}
+.donut .in .n {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 84px; line-height: 1; color: var(--ink); letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.donut .in .n small { font-size: 36px; font-weight: 900; color: var(--accent); }
+.donut .in .l { font-size: 19px; font-weight: 800; color: var(--muted); margin-top: 10px; letter-spacing: 0.16em; }
+.hero-copy .big-label { font-family: var(--font-display); font-size: 33px; font-weight: 900; color: var(--ink); line-height: 1.45; }
+.hero-copy .delta {
+  margin-top: 22px; display: flex; align-items: baseline; gap: 14px;
+  font-family: var(--font-display); font-weight: 900; color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.hero-copy .delta .from { font-size: 30px; color: var(--muted); text-decoration: line-through; }
+.hero-copy .delta .arrow { font-size: 30px; color: var(--accent); }
+.hero-copy .delta .to { font-size: 54px; color: var(--accent); }
+.hero-copy .delta .to small { font-size: 28px; }
+.hero-copy .delta-l { font-size: 21px; font-weight: 700; color: var(--muted); margin-top: 8px; }
+
+.sub-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 44px; }
+.chip {
+  background: var(--bg-soft); border: var(--card-border); border-radius: var(--radius-sm);
+  padding: 26px 30px; box-shadow: var(--card-shadow);
+  display: flex; align-items: center; gap: 22px;
+}
+.chip .ico {
+  width: 62px; height: 62px; flex: none; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; background: var(--accent-2, var(--accent));
+}
+.chip .v { font-family: var(--font-display); font-size: 40px; font-weight: 900; color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+.chip .v small { font-size: 22px; }
+.chip .k { font-size: 20px; font-weight: 700; color: var(--muted); margin-top: 8px; }
+
+/* =====================================================================
+   14. timeline — ロードマップ（3〜5ノード）
+   ===================================================================== */
+.timeline {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); top: 470px;
+}
+.timeline::before {
+  content: ""; position: absolute; left: 2%; right: 2%; top: 86px; height: 4px;
+  background: var(--line); border-radius: 2px;
+}
+.tl-nodes { display: grid; grid-template-columns: repeat(var(--cols, 4), 1fr); position: relative; }
+.tl-node { position: relative; padding: 150px 36px 0 0; }
+.tl-node .when {
+  position: absolute; top: 20px; left: 0;
+  font-family: var(--font-display); font-size: 24px; font-weight: 900;
+  color: var(--accent); letter-spacing: 0.08em;
+}
+.tl-node .dot {
+  position: absolute; top: 72px; left: 0;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent); border: 6px solid var(--bg);
+  box-shadow: 0 0 0 4px var(--accent);
+}
+.tl-node.is-now .dot { background: var(--accent-2, var(--accent)); box-shadow: 0 0 0 4px var(--accent-2, var(--accent)); }
+.tl-node h3 { font-family: var(--font-display); font-size: 35px; font-weight: 800; line-height: 1.4; margin-bottom: 14px; }
+.tl-node p { font-size: 27px; line-height: 1.65; color: var(--ink-body); }
+
+/* =====================================================================
+   15. funnel — ファネル / 絞り込み（3〜4段）
+   ===================================================================== */
+.funnel {
+  position: absolute; left: 50%; transform: translateX(-50%); top: 420px;
+  width: 1240px; display: flex; flex-direction: column; align-items: center; gap: 22px;
+}
+.fu-row { display: flex; align-items: center; gap: 36px; width: 100%; justify-content: center; }
+.fu-bar {
+  height: 118px; border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--accent) 18%, var(--bg-soft));
+  border: var(--card-border);
+  display: flex; align-items: center; justify-content: center; gap: 24px;
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
+  padding: 0 40px;
+}
+.fu-row:nth-child(1) .fu-bar { width: 100%; }
+.fu-row:nth-child(2) .fu-bar { width: 76%; background: color-mix(in srgb, var(--accent) 38%, var(--bg-soft)); }
+.fu-row:nth-child(3) .fu-bar { width: 54%; background: color-mix(in srgb, var(--accent) 62%, var(--bg-soft)); }
+.fu-row:nth-child(4) .fu-bar { width: 36%; background: var(--accent); }
+.fu-bar .t { font-family: var(--font-display); font-size: 31px; font-weight: 800; color: var(--ink); }
+.fu-bar .v { font-family: var(--font-display); font-size: 40px; font-weight: 900; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fu-row:nth-child(3) .fu-bar .t, .fu-row:nth-child(3) .fu-bar .v,
+.fu-row:nth-child(4) .fu-bar .t, .fu-row:nth-child(4) .fu-bar .v { color: var(--on-accent, #fff); }
+.fu-note {
+  position: absolute; right: -40px; font-family: var(--font-display);
+  font-size: 23px; font-weight: 900; color: var(--accent);
+}
+
+/* =====================================================================
+   16. matrix — 2×2マトリクス
+   ===================================================================== */
+.matrix {
+  position: absolute; left: 50%; transform: translateX(-50%); top: 400px;
+  width: 1180px; height: 520px;
+}
+.mx-grid {
+  position: absolute; inset: 0;
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 26px;
+}
+.mx-cell {
+  background: var(--bg-soft); border: var(--card-border); border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 34px 40px; display: flex; flex-direction: column; justify-content: center;
+}
+.mx-cell h3 { font-family: var(--font-display); font-size: 33px; font-weight: 800; margin-bottom: 12px; }
+.mx-cell p { font-size: 26px; line-height: 1.6; color: var(--ink-body); }
+.mx-cell.is-hero {
+  background: var(--accent); border-color: var(--accent);
+}
+.mx-cell.is-hero h3, .mx-cell.is-hero p { color: var(--on-accent, #fff); }
+.mx-axis {
+  position: absolute; font-family: var(--font-display);
+  font-size: 22px; font-weight: 900; color: var(--muted); letter-spacing: 0.1em;
+  background: var(--bg); padding: 4px 14px; border-radius: 999px; border: 1px solid var(--line);
+  z-index: 2;
+}
+.mx-axis.top    { top: -46px; left: 50%; transform: translateX(-50%); color: var(--accent); }
+.mx-axis.bottom { bottom: -46px; left: 50%; transform: translateX(-50%); }
+.mx-axis.left   { left: -84px; top: 50%; transform: translate(-0%, -50%) rotate(-90deg); }
+.mx-axis.right  { right: -84px; top: 50%; transform: translate(0%, -50%) rotate(90deg); color: var(--accent); }
+
+/* =====================================================================
+   ★ 立体感ユーティリティ（Phase 3）— どの要素にも足せる
+   ===================================================================== */
+/* 多層シャドウ: 数字が大きいほど浮く */
+.depth-1 { box-shadow: 0 2px 6px rgba(10, 12, 24, 0.08), 0 10px 24px rgba(10, 12, 24, 0.10); }
+.depth-2 { box-shadow: 0 4px 10px rgba(10, 12, 24, 0.10), 0 18px 40px rgba(10, 12, 24, 0.14), 0 44px 90px rgba(10, 12, 24, 0.12); }
+/* 傾き: カード・画像・チップに */
+.tilt-l  { transform: rotate(-2deg); }
+.tilt-r  { transform: rotate(1.6deg); }
+/* ポラロイド写真枠（画像を写真プリント風に） */
+.polaroid {
+  background: #fff; padding: 20px 20px 58px; border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 4px 10px rgba(10,12,24,0.10), 0 18px 40px rgba(10,12,24,0.16);
+  display: inline-block; position: relative;
+}
+.polaroid img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.polaroid .cap {
+  position: absolute; left: 0; right: 0; bottom: 14px; text-align: center;
+  font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #5A5A66;
+}
+
+/* =====================================================================
+   18. photo-hero — 全面写真の表紙（AI生成写真 or プレースホルダー）
+   ===================================================================== */
+.l-photo { color: #fff; }
+.photo-bg { position: absolute; inset: 0; }
+.photo-bg img { width: 100%; height: 100%; object-fit: cover; }
+/* 写真がまだ無いときのプレースホルダー（テーマ色のムード背景） */
+.photo-bg.placeholder {
+  background:
+    radial-gradient(1100px 700px at 78% 24%, color-mix(in srgb, var(--accent) 55%, transparent), transparent 70%),
+    radial-gradient(900px 700px at 18% 82%, color-mix(in srgb, var(--accent-2, var(--accent)) 45%, transparent), transparent 72%),
+    linear-gradient(140deg, #14161F, #232633);
+}
+.photo-scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(200deg, rgba(6, 8, 14, 0) 34%, rgba(6, 8, 14, 0.62) 78%),
+    linear-gradient(90deg, rgba(6, 8, 14, 0.42), transparent 58%);
+}
+.photo-body { position: absolute; left: var(--pad-x); bottom: 150px; right: 260px; }
+.photo-eyebrow {
+  font-family: var(--font-display);
+  font-size: 26px; font-weight: 800; letter-spacing: 0.26em;
+  color: rgba(255, 255, 255, 0.92); margin-bottom: 40px;
+}
+/* 斜めの帯タイトル: 1行 = 1つの .band。交互に色を変えると雑誌風 */
+.band-title { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.band {
+  display: inline-block; transform: rotate(-2deg);
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 84px; line-height: 1.12; letter-spacing: 0.01em;
+  padding: 8px 36px 14px;
+  background: var(--accent); color: var(--on-accent, #fff);
+  box-shadow: 0 14px 34px rgba(6, 8, 14, 0.35);
+}
+.band:nth-child(2) { transform: rotate(-2deg) translateX(42px); }
+.band:nth-child(3) { transform: rotate(-2deg) translateX(96px); }
+.band.alt  { background: #fff; color: #16181F; }
+.band.dark { background: #16181F; color: #fff; }
+.photo-sub {
+  margin-top: 42px; font-size: 31px; line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92); max-width: 960px;
+  text-shadow: 0 2px 14px rgba(6, 8, 14, 0.5);
+}
+.l-photo .brand, .l-photo .pageno { color: rgba(255, 255, 255, 0.85); }
+.l-photo .brand .mark { background: #fff; }
+
+/* =====================================================================
+   19. breakout — 円形フレームから飛び出すビジュアル
+   ===================================================================== */
+.breakout-grid {
+  position: absolute; left: var(--pad-x); right: 100px; top: 140px; bottom: 130px;
+  display: grid; grid-template-columns: 1fr 720px; gap: 72px; align-items: center;
+}
+.bo-stage { position: relative; height: 100%; }
+.bo-circle {
+  position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 16%, var(--bg-soft));
+  border: var(--card-border);
+}
+/* 円より背が高い画像を重ねる → 頭が円を突き破って立体に見える */
+.bo-img {
+  position: absolute; left: 50%; bottom: 48px; transform: translateX(-50%);
+  width: 560px; height: 740px; object-fit: contain; object-position: bottom;
+  filter: drop-shadow(0 36px 44px rgba(10, 12, 24, 0.30));
+}
+/* 写真がないときは絵文字/イラストでも成立 */
+.bo-emoji {
+  position: absolute; left: 50%; bottom: 230px; transform: translateX(-50%);
+  font-size: 400px; line-height: 1;
+  filter: drop-shadow(0 36px 44px rgba(10, 12, 24, 0.28));
+}
+/* 浮遊チップ: .chip に .bo-float を足し、inline style で配置 */
+.bo-float { position: absolute; z-index: 2; }
+
+/* =====================================================================
+   20. kinetic — 斜め文字のステートメント（雑誌の見開き風）
+   ===================================================================== */
+.kinetic {
+  position: absolute; inset: 0; padding-bottom: 40px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.k-stack { transform: rotate(-6deg); display: flex; flex-direction: column; align-items: flex-start; gap: 38px; }
+.k-line {
+  font-family: var(--font-display); font-weight: 900; line-height: 1.06;
+  font-size: 96px; letter-spacing: 0.01em; color: var(--ink);
+}
+.k-line.k-fill   { background: var(--ink); color: var(--bg); padding: 6px 40px 16px; box-shadow: 10px 14px 0 color-mix(in srgb, var(--ink) 18%, transparent); }
+.k-line.k-accent { background: var(--accent); color: var(--on-accent, #fff); padding: 6px 40px 16px; box-shadow: 10px 14px 0 color-mix(in srgb, var(--ink) 18%, transparent); }
+.k-line.k-outline { color: transparent; -webkit-text-stroke: 4px var(--ink); }
+.k-tag {
+  font-family: var(--font-display); font-size: 26px; font-weight: 800; letter-spacing: 0.18em;
+  color: var(--accent); margin-bottom: 6px;
+}
+/* 補足の一文: .kinetic の中（.k-stack の直後）に置き、文字群とひとつの塊にする */
+.k-foot {
+  margin-top: 88px;
+  font-size: 29px; font-weight: 700; color: var(--muted); letter-spacing: 0.04em;
+  width: max-content; max-width: 1620px; text-align: center;
+}
+
+/* =====================================================================
+   17. bars — 横棒比較（2〜5本、--w:% で長さ指定）
+   ===================================================================== */
+.bars {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); top: 430px;
+  display: flex; flex-direction: column; gap: 34px;
+}
+.bar-row { display: grid; grid-template-columns: 340px 1fr 190px; align-items: center; gap: 36px; }
+.bar-row .k { font-family: var(--font-display); font-size: 30px; font-weight: 800; color: var(--ink-body); text-align: right; line-height: 1.4; }
+.bar-row .track { height: 64px; background: var(--bg-soft); border: var(--card-border); border-radius: 999px; overflow: hidden; }
+.bar-row .fill {
+  height: 100%; width: var(--w, 50%); border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 26%, var(--bg-soft));
+}
+.bar-row.is-hero .k { color: var(--ink); font-weight: 900; }
+.bar-row.is-hero .fill { background: var(--accent); }
+.bar-row .v { font-family: var(--font-display); font-size: 38px; font-weight: 900; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bar-row.is-hero .v { color: var(--accent); font-size: 44px; }
+
+/* =====================================================================
+   ★ video-safe — 撮影用モード（左下ワイプ＋下部テロップ前提）
+   使い方: 全スライドのルートに付与 <div class="slide video-safe ...">
+   ・下部15%（約160px）を目安に本文・結論を置かない。
+     図解や装飾が多少テロップに被るのは許容（バランス優先）
+   ・左下コーナーはワイプで隠れる前提: brand 非表示、重要要素を左下に置かない
+   ・pageno は右上へ移動（台本との同期用に残す）
+   ===================================================================== */
+.video-safe .brand { display: none; }
+.video-safe .pageno { bottom: auto; top: 54px; }
+.video-safe .cards, .video-safe .compare, .video-safe .stats { bottom: 180px; }
+.video-safe .hero-grid { bottom: 170px; }
+.video-safe .vlist { top: 380px; }
+.video-safe .quote-wrap { padding-bottom: 180px; }
+.video-safe .kinetic { padding-bottom: 140px; }
+.video-safe .closing-wrap { padding-bottom: 120px; }
+.video-safe .cover-body { top: 300px; }
+.video-safe .breakout-grid { bottom: 180px; }
+.video-safe .photo-body { bottom: 220px; }
+
+/* =====================================================================
+   ★ tone-dark — 明暗リズム用の暗面バリアント
+   使い方: <div class="slide on-cover tone-dark"> （on-cover とセットで付ける）
+   対応レイアウト: quote / kinetic / stats。デッキ中盤の「山場」に置いて
+   白面の連続（単調さ）を断ち切る。
+   ===================================================================== */
+.tone-dark { background: var(--cover-bg); color: var(--cover-ink); }
+/* quote */
+.tone-dark .quote-text { color: var(--cover-ink); }
+.tone-dark .quote-who { color: var(--cover-muted); }
+.tone-dark .quote-who::before { background: var(--cover-muted); }
+/* kinetic */
+.tone-dark .k-line { color: var(--cover-ink); }
+.tone-dark .k-line.k-outline { color: transparent; -webkit-text-stroke-color: var(--cover-ink); }
+.tone-dark .k-line.k-fill {
+  background: var(--cover-ink); color: var(--cover-bg);
+  box-shadow: 10px 14px 0 color-mix(in srgb, var(--cover-ink) 22%, transparent);
+}
+.tone-dark .k-line.k-accent { box-shadow: 10px 14px 0 color-mix(in srgb, var(--cover-ink) 22%, transparent); }
+.tone-dark .k-foot { color: var(--cover-muted); }
+/* stats（head 付きレイアウトの見出しも暗面色に） */
+.tone-dark .head h2 { color: var(--cover-ink); }
+.tone-dark .head .lead { color: var(--cover-muted); }
+.tone-dark .stat {
+  background: color-mix(in srgb, var(--cover-ink) 7%, var(--cover-bg));
+  border-color: color-mix(in srgb, var(--cover-ink) 18%, transparent);
+}
+.tone-dark .stat .label { color: var(--cover-muted); }
+.tone-dark .stat .desc { color: var(--cover-muted); }

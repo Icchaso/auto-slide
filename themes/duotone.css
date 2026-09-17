@@ -1,0 +1,127 @@
+/* =====================================================================
+   SlideSmith theme: duotone — ツートン・バイカラー
+   雰囲気: 大胆 / 明快 / グラフィカル。デザイン会社・ブランド資料・
+           採用ピッチ・カンファレンス向き。
+   手法: 白地 × 濃紺インク × 電気的ブルーの2色対比、イエローは極小面積の
+         差し色。半面ベタ塗り + 四分円の幾何学タイルパターンで「色面で語る」。
+         罫線はっきり（2px）・影はベタずらしを微量・ロゴと文字は小さく上品に。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap');
+
+.slide {
+  /* --- 配色: 白地 × 濃紺 × 電気ブルー、黄は差し色専用 --- */
+  --bg:       #FFFFFF;
+  --bg-soft:  #F4F6FB;
+  --ink:      #101A2E;   /* 濃紺（ほぼ黒） */
+  --ink-2:    #35415A;
+  --muted:    #67718A;
+  --line:     #D9DFEC;
+  --accent:   #1D6BFF;   /* 電気的ブルー（主役） */
+  --accent-2: #FFC400;   /* イエロー（極小面積の差し色専用） */
+  --on-accent:#FFFFFF;
+
+  /* --- カバー面: 濃紺のベタ。半面はタイルパターン（.deco-tiles）が担う --- */
+  --cover-bg:    #101A2E;
+  --cover-ink:   #FFFFFF;
+  --cover-muted: #94A0BC;
+
+  /* --- 字組み: 見出しは 900 で太く、文字は小さめでも骨太に --- */
+  --font-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.03em;
+
+  /* --- 形状: 角は控えめ・罫線はっきり・影はベタずらしを薄く --- */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --card-border: 2px solid var(--ink);
+  --card-shadow: 6px 6px 0 rgba(16, 26, 46, 0.08);
+  --mark-radius: 3px;
+  --kicker-bar: 6px;
+  --ghost-opacity: 0.12;
+}
+
+/* 見出しの強調語: 濃紺文字の下にイエローのマーカー（2色対比の要） */
+.head h2 em, .story h2 em {
+  color: inherit;
+  background: linear-gradient(transparent 64%, rgba(255, 196, 0, 0.92) 64%, rgba(255, 196, 0, 0.92) 94%, transparent 94%);
+  padding: 0 4px; margin: 0 -2px;
+}
+
+/* カバー面の強調語・アイキャッチはイエロー（濃紺に一番効く色） */
+.cover-title em, .closing-title em, .section-title em { color: var(--accent-2); }
+.l-cover .eyebrow, .l-section .eyebrow, .closing-wrap .eyebrow { color: var(--accent-2); }
+.cover-rule { background: var(--accent-2); width: 140px; height: 8px; border-radius: 0; }
+.cover-title { font-weight: 900; }
+.l-cover .cover-body { right: 940px; }   /* 右44%はタイルパターン面のため */
+.l-cover .pageno {                        /* パターン面の上ではチップで保護 */
+  padding: 8px 16px; right: 112px; bottom: 44px;
+  background: var(--cover-bg); border-radius: 8px;
+}
+
+/* バッジ: 青 → 濃紺 → 黄（黄のみ濃紺文字）のローテーション */
+.card:nth-child(3n+1) .badge, .vlist li:nth-child(3n+1) .badge, .step:nth-child(3n+1) .badge { background: var(--accent); }
+.card:nth-child(3n+2) .badge, .vlist li:nth-child(3n+2) .badge, .step:nth-child(3n+2) .badge { background: var(--ink); }
+.card:nth-child(3n)   .badge, .vlist li:nth-child(3n)   .badge, .step:nth-child(3n)   .badge { background: var(--accent-2); color: var(--ink); }
+
+/* 比較: 濃紺 vs 青の2色対決。VSコインは黄 */
+.panel .panel-head { background: var(--ink); color: #FFFFFF; }
+.panel.is-good .panel-head { background: var(--accent); color: #FFFFFF; }
+.panel.is-good li::before { color: var(--accent); }
+.vs { background: var(--accent-2); color: var(--ink); }
+
+/* 表・章扉・CTA */
+table.simple thead th { background: var(--ink); color: #FFFFFF; }
+table.simple td.hot { color: var(--accent); }
+.section-num { color: transparent; -webkit-text-stroke: 3px rgba(29, 107, 255, 0.55); opacity: 0.8; }
+.closing-cta {
+  background: var(--accent-2); color: var(--ink);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.28);
+}
+
+/* ---------------------------------------------------------------------
+   装飾（.deco 配下は QC 対象外）: 幾何学タイルパターン
+   四分円の風車配置 + 中心の黄ドット（オリジナルの組み合わせ）。
+   1. deco-tiles      — 右半面の縦帯（表紙用）。左端に黄の仕切り線
+   2. deco-tiles-l    — 左半面バリエーション
+   3. deco-tiles-band — 上辺の横帯（締め用・ミニタイル）
+   --------------------------------------------------------------------- */
+.deco-tiles, .deco-tiles-l, .deco-tiles-band {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240"><rect width="240" height="240" fill="%23101A2E"/><rect x="120" width="120" height="120" fill="%231D6BFF"/><rect y="120" width="120" height="120" fill="%231D6BFF"/><path d="M0 0L120 0A120 120 0 0 1 0 120Z" fill="%231D6BFF"/><path d="M240 0L240 120A120 120 0 0 1 120 0Z" fill="%23101A2E"/><path d="M0 240L0 120A120 120 0 0 1 120 240Z" fill="%23101A2E"/><path d="M240 240L120 240A120 120 0 0 1 240 120Z" fill="%231D6BFF"/><circle cx="120" cy="120" r="26" fill="%23FFC400"/></svg>');
+  background-size: 240px 240px;
+}
+.deco-tiles {
+  top: 0; bottom: 0; right: 0; width: 44%;
+  border-left: 8px solid var(--accent-2);
+}
+.deco-tiles-l {
+  top: 0; bottom: 0; left: 0; width: 44%;
+  border-right: 8px solid var(--accent-2);
+}
+.deco-tiles-band {
+  top: 0; left: 0; right: 0; height: 160px;
+  background-size: 160px 160px;
+  border-bottom: 8px solid var(--accent-2);
+}
+
+/* ---------------------------------------------------------------------
+   Phase 2/3 トークン: heroカードは白面 × 濃紺2px枠 × 青のベタずらし影で
+   2色対比を効かせる。ステッカーは黄、チップアイコンは黄面（base既定）。
+   --------------------------------------------------------------------- */
+.slide {
+  --hero-tilt: 0deg;
+  --hero-border: 2px solid var(--ink);
+  --hero-shadow: 12px 12px 0 rgba(29, 107, 255, 0.85);
+  --sticker-border: 2px solid var(--ink);
+}
+.hero-card { background: #FFFFFF; }
+.hero-card .sticker { background: var(--accent-2); color: var(--ink); }
+.chip .ico { border: 2px solid var(--ink); }
+.donut .track { stroke: var(--line); }
+
+/* 透かしタイポ: 青のアウトラインで */
+.ghost { -webkit-text-stroke-color: rgba(29, 107, 255, 0.22); }
+.on-cover .ghost { -webkit-text-stroke-color: rgba(255, 255, 255, 0.14); }
+
+/* bars: 主役バーは青、値は濃紺 */
+.bar-row.is-hero .fill { background: var(--accent); }
+.bar-row.is-hero .v { color: var(--accent); }

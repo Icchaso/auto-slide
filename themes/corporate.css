@@ -1,0 +1,62 @@
+/* =====================================================================
+   SlideSmith theme: corporate — ビジネス・信頼感
+   雰囲気: 誠実 / 上質 / 落ち着き。提案書・会社説明・セミナー向き。
+   手法: 白地 × 深いネイビーインク × ティール、ゴールドの差し色を微量。
+   ===================================================================== */
+
+.slide {
+  /* --- 配色 --- */
+  --bg:       #FFFFFF;
+  --bg-soft:  #F5F7FA;
+  --ink:      #0E1B2C;
+  --ink-2:    #33465C;
+  --muted:    #6B7A8D;
+  --line:     #E4E9F0;
+  --accent:   #0E8074;   /* ティール */
+  --accent-2: #C7A24B;   /* ゴールド（罫・微量の差し色専用） */
+  --on-accent:#FFFFFF;
+
+  /* --- カバー面: 濃紺 --- */
+  --cover-bg:    #0E1B2C;
+  --cover-ink:   #EAF0F6;
+  --cover-muted: #93A6BC;
+
+  /* --- 字組み --- */
+  --font-display: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-body:    "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --tracking: 0.02em;
+
+  /* --- 形状: 端正 --- */
+  --radius: 18px;
+  --radius-sm: 12px;
+  --card-border: 1px solid var(--line);
+  --card-shadow: 0 2px 14px rgba(14, 27, 44, 0.05);
+  --ghost-opacity: 0.1;
+}
+
+/* タイトル・締めの強調はティール、罫はゴールド */
+.cover-rule { background: var(--accent-2); height: 5px; width: 96px; }
+.cover-title { font-weight: 700; }
+.closing-title em { color: var(--accent-2); }
+
+/* カードに左肩のゴールドタブ（さりげない高級感） */
+.card::after, .stat::after {
+  content: ""; position: absolute; left: 0; top: 34px;
+  width: 5px; height: 72px; background: var(--accent-2); border-radius: 0 4px 4px 0;
+}
+.stat { position: relative; }
+
+/* 表: ヘッダーは濃紺 */
+table.simple thead th { background: var(--ink); }
+
+/* ---------------------------------------------------------------------
+   装飾: 静かな幾何学（表紙・締め用）
+   --------------------------------------------------------------------- */
+.deco-orb {
+  right: -180px; bottom: -220px; width: 760px; height: 760px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(14, 128, 116, 0.35), rgba(14, 128, 116, 0) 62%);
+}
+.deco-hairline {
+  right: 128px; top: 0; width: 1px; height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.09) 30%, rgba(255, 255, 255, 0.09) 70%, transparent);
+}

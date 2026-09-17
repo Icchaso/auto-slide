@@ -1,0 +1,76 @@
+{
+  "title": "SlideSmith PPTXルート サンプル",
+  "theme": "corporate",
+  "brand": "SlideSmith",
+  "slides": [
+    {
+      "layout": "cover",
+      "title": "提案資料は、\n編集できる形で渡す。",
+      "subtitle": "SlideSmith PPTX出力ルート — Canva・PowerPointでそのまま編集できる納品形式",
+      "image": "assets/cover-gpt.png",
+      "notes": "表紙。全面写真＋スクリムの上にテキストボックスを重ねている。文字は焼き込みではないので、開いてすぐ書き換えられる。"
+    },
+    {
+      "layout": "agenda",
+      "title": "本日の流れ",
+      "items": [
+        "なぜ「編集可能なPPTX」なのか",
+        "3つの画像生成ルート",
+        "導入ステップと使い方",
+        "運用イメージとコスト"
+      ]
+    },
+    {
+      "layout": "section",
+      "no": "01",
+      "title": "なぜ、編集可能なPPTXなのか"
+    },
+    {
+      "layout": "points",
+      "title": "PPTXルートの3つの強み",
+      "points": [
+        {
+          "head": "文字がそのまま編集できる",
+          "body": "テキストは画像に焼き込まず、すべてテキストボックスとして配置。誤字修正も文言変更も、渡した相手だけで完結する。"
+        },
+        {
+          "head": "CanvaもPowerPointも",
+          "body": "PPTXはCanvaにそのままインポートできる。使い慣れたツールで配色・写真・文言を自由に仕上げられる。"
+        },
+        {
+          "head": "AI画像は素材として分離",
+          "body": "背景・挿絵はAI生成画像を別レイヤーで配置。あとから写真だけ差し替えることもできる。"
+        }
+      ]
+    },
+    {
+      "layout": "split",
+      "title": "画像は「素材」として渡す",
+      "body": "背景写真はAIで生成し、文字を載せない状態で配置する。編集する人は、写真だけ差し替えることも、文字だけ直すこともできる。",
+      "bullets": [
+        "gpt-image-2 / Gemini / 無料ルートの3択",
+        "テーマに合わせた画風が自動で乗る",
+        "文字混入はプロンプトで自動防止"
+      ],
+      "image": "assets/split.jpg",
+      "imageSide": "right"
+    },
+    {
+      "layout": "data",
+      "value": "3分",
+      "label": "テキストからPPTX出力までの目安時間",
+      "note": "deck.jsonに文章を流し込んでコマンド1つ。画像生成を含めても数分で「編集できる下書き」が完成する。"
+    },
+    {
+      "layout": "quote",
+      "text": "納品して終わり、ではなく。\n渡したあとに育てられる資料へ。",
+      "by": "SlideSmith — PPTX Route"
+    },
+    {
+      "layout": "closing",
+      "title": "まずは1枚から。",
+      "subtitle": "node scripts/pptx.mjs examples/pptx-sample",
+      "image": null
+    }
+  ]
+}

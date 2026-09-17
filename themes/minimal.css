@@ -1,0 +1,83 @@
+/* =====================================================================
+   SlideSmith theme: minimal — ミニマル・モノクロ
+   雰囲気: 削ぎ落とし / 大胆 / タイポグラフィ主役。講座・建築・PF向き。
+   手法: 白地 × 黒 1色。差し色は朱赤を極小面積のみ。
+         罫線 1px・radius 0・影なし・極太ウェイトの見出し。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
+
+.slide {
+  /* --- 配色: 白 × 黒。accent も黒 --- */
+  --bg:       #FFFFFF;
+  --bg-soft:  #FFFFFF;
+  --ink:      #0A0A0A;
+  --ink-2:    #2E2E2E;
+  --muted:    #6E6E6E;
+  --line:     #111111;
+  --accent:   #0A0A0A;
+  --accent-2: #E3350D;   /* 朱赤: 強調語・細罫だけの極小面積 */
+  --on-accent:#FFFFFF;
+
+  /* --- カバー面も白のまま。余白で見せる --- */
+  --cover-bg:    #FFFFFF;
+  --cover-ink:   #0A0A0A;
+  --cover-muted: #6E6E6E;
+
+  /* --- 字組み --- */
+  --font-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.01em;
+
+  /* --- 形状: 直線のみ。罫 1px・角 0・影なし --- */
+  --radius: 0;
+  --radius-sm: 0;
+  --card-border: 1px solid var(--line);
+  --card-shadow: none;
+  --mark-radius: 0;
+  --kicker-bar: 2px;
+  --ghost-opacity: 0.05;
+}
+
+/* 見出しは極太。強調語（<em>）だけが朱赤 —— 唯一の色 */
+.head h2       { font-weight: 900; }
+.cover-title   { font-weight: 900; letter-spacing: 0; }
+.section-title, .closing-title { font-weight: 900; }
+.head h2 em, .cover-title em, .closing-title em { color: var(--accent-2); }
+
+/* 罫も直線で */
+.cover-rule  { background: var(--ink); height: 8px; width: 120px; border-radius: 0; }
+.closing-cta { border-radius: 0; }
+
+/* 数字は黒で詰めて大きく見せる */
+.stat .value { color: var(--ink); letter-spacing: -0.02em; }
+
+/* ---------------------------------------------------------------------
+   Phase 2 装飾トークン: リッチレイアウトも白と直線に揃える
+   --------------------------------------------------------------------- */
+/* 透かしタイポ（ghost）: 白地を汚さない極薄の輪郭のみ */
+.ghost { -webkit-text-stroke: 2px rgba(10, 10, 10, 0.055); }
+
+/* ドーナツの軌道: --line が黒のため、薄いグレーに差し替え。
+   弧は角を落とさず直線的に（極小比率でも「一瞬の目盛り」として立つ） */
+.donut .track { stroke: #EAEAEA; }
+.donut .arc { stroke-linecap: butt; }
+
+/* hero-stat の強調語にも朱を一滴（.head h2 em と同じ規律） */
+.story h2 em { color: var(--accent-2); }
+
+/* 丸みを持つ部品も直線に（ミニマルの形状規律） */
+.story .note { border-radius: 0; }
+.chip .ico { border-radius: 0; background: var(--ink); color: #FFFFFF; }
+.bar-row .track, .bar-row .fill { border-radius: 0; }
+
+/* 引用の強調語にだけ朱を一滴 */
+.quote-text em { color: var(--accent-2); }
+
+/* ---------------------------------------------------------------------
+   装飾: 朱の小さな正方形 / 1px の基準線。文字に重ねない
+   --------------------------------------------------------------------- */
+/* 朱の正方形: 右上に一つだけ（表紙・締め用） */
+.deco-sq { right: 128px; top: 132px; width: 44px; height: 44px; background: var(--accent-2); }
+
+/* 基準線: 画面下部を貫く 1px（グリッドの気配） */
+.deco-baseline { left: 128px; right: 128px; bottom: 128px; height: 1px; background: var(--ink); }

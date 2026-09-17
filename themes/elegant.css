@@ -1,0 +1,85 @@
+/* =====================================================================
+   SlideSmith theme: elegant — 高級・エレガント・和モダン
+   雰囲気: 静寂 / 上質 / 品格。高級旅館・料亭・ハイブランド向き。
+   手法: 生成りの地 × 墨のカバー面 × 金の差し色を微量。
+         明朝体・直線的な形状（radius 2-4px）・影なし・細い罫線。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&display=swap');
+
+.slide {
+  /* --- 配色: 生成り地 × 墨 × 金 --- */
+  --bg:       #F6F2E9;
+  --bg-soft:  #FBF8F1;
+  --ink:      #1D1A15;
+  --ink-2:    #4A443A;
+  --muted:    #6B6557;
+  --line:     #D8CFBB;
+  --accent:   #96751F;   /* 金（本文面: 暗めで可読性を確保） */
+  --accent-2: #C0A25C;   /* 明るい金（罫・飾り専用） */
+  --on-accent:#FBF8F1;
+
+  /* --- カバー面: 墨色 --- */
+  --cover-bg:    #16130F;
+  --cover-ink:   #F1EBDD;
+  --cover-muted: #A79E89;
+
+  /* --- 字組み: 明朝 --- */
+  --font-display: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-body:    "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --tracking: 0.06em;
+
+  /* --- 形状: 直線的な品格。影は使わない --- */
+  --radius: 4px;
+  --radius-sm: 2px;
+  --card-border: 1px solid var(--line);
+  --card-shadow: none;
+  --mark-radius: 0;
+  --kicker-bar: 1px;
+  --ghost-opacity: 0.08;
+}
+
+/* 墨のカバー面では金を一段明るくして沈まないように */
+.slide.on-cover { --accent: #C9A96A; --accent-2: #C9A96A; }
+
+/* 明朝は太字を絞り、字間で品を出す */
+.cover-title  { font-weight: 600; letter-spacing: 0.08em; }
+.section-title, .closing-title { font-weight: 600; letter-spacing: 0.06em; }
+.head h2      { font-weight: 600; }
+.quote-text   { font-weight: 600; }
+.quote-mark   { font-family: var(--font-display); }
+
+/* 罫は髪の毛ほどに細く */
+.cover-rule { height: 1px; width: 180px; border-radius: 0; background: var(--accent-2); }
+
+/* CTA は塗らずに、金の枠だけで --- 静かな誘い */
+.closing-cta {
+  border-radius: 0; background: transparent;
+  color: var(--cover-ink); border: 1px solid var(--accent-2);
+  font-weight: 600; letter-spacing: 0.16em;
+}
+
+/* ---------------------------------------------------------------------
+   装飾: 金の二重罫の額縁 / 円相（えんそう）。3個まで・文字に重ねない
+   --------------------------------------------------------------------- */
+/* 額縁: 表紙・締め・引用に。内側にもう一本淡い線 */
+.deco-frame { inset: 42px; border: 1px solid rgba(176, 146, 82, 0.5); }
+.deco-frame::after {
+  content: ""; position: absolute; inset: 10px;
+  border: 1px solid rgba(176, 146, 82, 0.22);
+}
+
+/* 透かしタイポ（ghost）: 金のごく細い輪郭線 × 明朝の中量ウェイト。
+   塗らず・太らせず、灯りの気配ほどの濃度にとどめる */
+.ghost { font-weight: 500; -webkit-text-stroke: 1.5px rgba(150, 117, 31, 0.28); }
+.on-cover .ghost { -webkit-text-stroke: 1.5px rgba(201, 169, 106, 0.30); }
+
+/* 円相: 右端に浮かぶ細い金の円（表紙用） */
+.deco-enso {
+  right: -140px; top: 50%; transform: translateY(-50%);
+  width: 640px; height: 640px; border-radius: 50%;
+  border: 1px solid rgba(201, 169, 106, 0.38);
+}
+.deco-enso::after {
+  content: ""; position: absolute; inset: 26px; border-radius: 50%;
+  border: 1px solid rgba(201, 169, 106, 0.16);
+}

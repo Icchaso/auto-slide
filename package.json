@@ -1,0 +1,15 @@
+{
+  "name": "slidesmith",
+  "version": "1.0.0",
+  "description": "Generate pro-quality slide decks (16:9, 4K PNG/PDF) from plain text with Claude Code",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "render": "node scripts/render.mjs",
+    "pptx": "node scripts/pptx.mjs"
+  },
+  "dependencies": {
+    "playwright-core": "^1.61.1",
+    "pptxgenjs": "^4.0.1"
+  }
+}

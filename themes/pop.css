@@ -1,0 +1,118 @@
+/* =====================================================================
+   SlideSmith theme: pop — ポップ・ビビッド
+   雰囲気: 楽しい / 元気 / 親しみ。SNS講座・イベント・キャンペーン向き。
+   手法: クリーム地 × コーラル/ティール/サンイエロー、丸ゴシック、
+         太アウトライン + オフセット単色影（ステッカー感）。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&display=swap');
+
+.slide {
+  /* --- 配色 --- */
+  --bg:       #FFF9F0;
+  --bg-soft:  #FFFFFF;
+  --ink:      #2B2350;
+  --ink-2:    #4A4370;
+  --muted:    #8B85A8;
+  --line:     #2B2350;
+  --accent:   #FF5D73;   /* コーラルピンク */
+  --accent-2: #00B8A9;   /* ティール */
+  --accent-3: #FFC93C;   /* サンイエロー */
+  --on-accent:#FFFFFF;
+
+  /* --- カバー面: ポップは白地に賑やかな装飾で明るく --- */
+  --cover-bg:    #FFF9F0;
+  --cover-ink:   #2B2350;
+  --cover-muted: #6E6791;
+
+  /* --- 字組み --- */
+  --font-display: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.03em;
+
+  /* --- 形状: 太枠 + ずらし影 = ステッカー --- */
+  --radius: 28px;
+  --radius-sm: 18px;
+  --card-border: 3px solid var(--ink);
+  --card-shadow: 8px 8px 0 rgba(43, 35, 80, 0.16);
+  --mark-radius: 4px;
+  --kicker-bar: 6px;
+  --ghost-opacity: 0.16;
+}
+
+/* 見出しの強調語（<em>）は蛍光マーカー風。改行しても崩れない */
+.head h2 em {
+  color: inherit;
+  background: linear-gradient(transparent 58%, var(--accent-3) 58%, var(--accent-3) 94%, transparent 94%);
+  padding: 0 6px; margin: 0 -2px; border-radius: 6px;
+}
+
+/* バッジ類は交互に色が変わって楽しく */
+.card:nth-child(3n+1) .badge, .vlist li:nth-child(3n+1) .badge, .step:nth-child(3n+1) .badge { background: var(--accent); }
+.card:nth-child(3n+2) .badge, .vlist li:nth-child(3n+2) .badge, .step:nth-child(3n+2) .badge { background: var(--accent-2); }
+.card:nth-child(3n)   .badge, .vlist li:nth-child(3n)   .badge, .step:nth-child(3n)   .badge { background: var(--accent-3); color: var(--ink); }
+.stat:nth-child(3n+1) .value { color: var(--accent); }
+.stat:nth-child(3n+2) .value { color: var(--accent-2); }
+.stat:nth-child(3n)   .value { color: #E8A800; }
+
+/* 表紙タイトルの強調は 2色目 */
+.cover-title em { color: var(--accent); }
+.cover-title { text-shadow: 6px 6px 0 rgba(255, 201, 60, 0.55); }
+.cover-rule { background: var(--accent-2); height: 8px; width: 120px; border-radius: 4px; }
+
+/* 章扉・締めは白地のまま、巨大数字はイエロー */
+.section-num { color: var(--accent-3); opacity: 0.5; -webkit-text-stroke: 3px var(--ink); }
+.closing-title em { color: var(--accent); }
+.closing-cta { box-shadow: 8px 8px 0 rgba(43, 35, 80, 0.2); border: 3px solid var(--ink); }
+
+/* 比較: VS バッジと NG 側の色 */
+.vs { background: var(--accent-3); color: var(--ink); border: 4px solid var(--ink); }
+.panel .panel-head { background: #8B85A8; }
+.panel.is-good .panel-head { background: var(--accent-2); }
+.panel.is-good li::before { color: var(--accent-2); }
+
+/* テーブル見出し */
+table.simple thead th { background: var(--ink); }
+table.simple td.hot { color: var(--accent); }
+
+/* ---------------------------------------------------------------------
+   装飾: 紙吹雪 + ゆる図形（.deco 内は QC 対象外）
+   使い方: 表紙・締めに <div class="deco deco-confetti"></div> を置く
+   --------------------------------------------------------------------- */
+.deco-confetti { inset: 0; }
+.deco-confetti i { position: absolute; display: block; }
+.deco-confetti i:nth-child(1)  { left: 40%; top: 5%;  width: 38px; height: 38px; border-radius: 50%; background: var(--accent-3); }
+.deco-confetti i:nth-child(2)  { left: 14%; top: 78%; width: 26px; height: 26px; border-radius: 50%; border: 6px solid var(--accent-2); }
+.deco-confetti i:nth-child(3)  { left: 82%; top: 14%; width: 44px; height: 44px; border-radius: 12px; background: var(--accent); transform: rotate(18deg); }
+.deco-confetti i:nth-child(4)  { left: 90%; top: 66%; width: 30px; height: 30px; border-radius: 50%; background: var(--accent-2); }
+.deco-confetti i:nth-child(5)  { left: 72%; top: 86%; width: 34px; height: 34px; border-radius: 9px;  border: 6px solid var(--accent-3); transform: rotate(-14deg); }
+.deco-confetti i:nth-child(6)  { left: 46%; top: 8%;  width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 34px solid var(--accent); transform: rotate(24deg); }
+.deco-confetti i:nth-child(7)  { left: 30%; top: 88%; width: 0; height: 0; border-left: 16px solid transparent; border-right: 16px solid transparent; border-bottom: 28px solid var(--accent-3); transform: rotate(-30deg); }
+.deco-confetti i:nth-child(8)  { left: 94%; top: 38%; width: 22px; height: 22px; border-radius: 50%; background: var(--accent-3); }
+.deco-confetti i:nth-child(9)  { left: 4%;  top: 44%; width: 24px; height: 24px; border-radius: 7px; background: var(--accent-2); transform: rotate(30deg); }
+.deco-confetti i:nth-child(10) { left: 60%; top: 90%; width: 26px; height: 26px; border-radius: 50%; border: 6px solid var(--accent); }
+
+/* 表紙右側のゆる大玉 */
+.deco-blob { right: -160px; bottom: -200px; width: 640px; height: 640px; border-radius: 50%; background: var(--accent-3); opacity: 0.5; }
+.deco-blob2 { right: 140px; bottom: 120px; width: 220px; height: 220px; border-radius: 50%; border: 10px solid var(--accent-2); opacity: 0.6; }
+
+/* ---------------------------------------------------------------------
+   Phase 2: リッチレイアウト装飾トークン（hero-stat をステッカー感に）
+   --------------------------------------------------------------------- */
+.slide {
+  --hero-tilt: -1.2deg;
+  --sticker-border: 3px solid var(--ink);
+  --hero-border: 4px solid var(--ink);
+  --hero-shadow: 12px 12px 0 rgba(43, 35, 80, .16);
+}
+/* hero-stat の見出し強調も蛍光マーカー風に統一 */
+.story h2 em {
+  color: inherit;
+  background: linear-gradient(transparent 58%, var(--accent-3) 58%, var(--accent-3) 94%, transparent 94%);
+  padding: 0 6px;
+}
+/* ドーナツの下地はクリーム色に（線色のままだと重い） */
+.donut .track { stroke: #F0EBE0; }
+/* サブ指標チップのアイコンも太枠ステッカーに、色は交互 */
+.chip .ico { border: 3px solid var(--ink); }
+.chip:nth-child(1) .ico { background: var(--accent-2); }
+.chip:nth-child(2) .ico { background: var(--accent-3); }

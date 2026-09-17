@@ -1,0 +1,69 @@
+{
+  "_readme": "PPTX出力ルート用のテーマ定義。themes/*.css のCSS変数から転写したもの。fontはCanvaに標準搭載されているGoogle Fonts名を採用（PowerPointでは近いフォントに自動置換されるが、テキストの編集可能性は保たれる）。CSS側を変えたらここも同期すること（一貫性ペア）。",
+  "corporate": {
+    "bg": "#FFFFFF", "bgSoft": "#F5F7FA", "ink": "#0E1B2C", "ink2": "#33465C",
+    "accent": "#0E8074", "accent2": "#C7A24B",
+    "darkBg": "#0E1B2C", "darkInk": "#FFFFFF", "darkSub": "#AAB9CC",
+    "fontHead": "Noto Sans JP", "fontBody": "Noto Sans JP"
+  },
+  "pop": {
+    "bg": "#FFF9F0", "bgSoft": "#FFFFFF", "ink": "#2B2350", "ink2": "#4A4370",
+    "accent": "#FF5D73", "accent2": "#00B8A9",
+    "darkBg": "#2B2350", "darkInk": "#FFFFFF", "darkSub": "#C9C3E8",
+    "fontHead": "M PLUS Rounded 1c", "fontBody": "M PLUS Rounded 1c"
+  },
+  "elegant": {
+    "bg": "#F6F2E9", "bgSoft": "#FBF8F1", "ink": "#1D1A15", "ink2": "#4A443A",
+    "accent": "#96751F", "accent2": "#C0A25C",
+    "darkBg": "#1D1A15", "darkInk": "#F6F2E9", "darkSub": "#C0A25C",
+    "fontHead": "Shippori Mincho", "fontBody": "Shippori Mincho"
+  },
+  "minimal": {
+    "bg": "#FFFFFF", "bgSoft": "#FFFFFF", "ink": "#0A0A0A", "ink2": "#2E2E2E",
+    "accent": "#0A0A0A", "accent2": "#E3350D",
+    "darkBg": "#0A0A0A", "darkInk": "#FFFFFF", "darkSub": "#BBBBBB",
+    "fontHead": "Zen Kaku Gothic New", "fontBody": "Zen Kaku Gothic New"
+  },
+  "tech": {
+    "bg": "#060B18", "bgSoft": "#0B1426", "ink": "#EAF3FF", "ink2": "#B9C9E2",
+    "accent": "#3EE0FF", "accent2": "#5B8CFF",
+    "darkBg": "#0B1426", "darkInk": "#EAF3FF", "darkSub": "#B9C9E2",
+    "fontHead": "Zen Kaku Gothic New", "fontBody": "Zen Kaku Gothic New"
+  },
+  "warm": {
+    "bg": "#F7F1E8", "bgSoft": "#FDFAF4", "ink": "#40332A", "ink2": "#5F5045",
+    "accent": "#B45A38", "accent2": "#77804C",
+    "darkBg": "#40332A", "darkInk": "#F7F1E8", "darkSub": "#D9C7B4",
+    "fontHead": "Zen Maru Gothic", "fontBody": "Zen Maru Gothic"
+  },
+  "feminine": {
+    "bg": "#FDFBF7", "bgSoft": "#FFFFFF", "ink": "#46363E", "ink2": "#6E5A63",
+    "accent": "#B4788A", "accent2": "#C5A572",
+    "darkBg": "#46363E", "darkInk": "#FDFBF7", "darkSub": "#D9C2CB",
+    "fontHead": "Zen Maru Gothic", "fontBody": "Zen Maru Gothic"
+  },
+  "retro": {
+    "bg": "#F6EEDC", "bgSoft": "#FCF6E7", "ink": "#3B2A1E", "ink2": "#5D4632",
+    "accent": "#A03A2C", "accent2": "#2E5941",
+    "darkBg": "#3B2A1E", "darkInk": "#F6EEDC", "darkSub": "#D9A62E",
+    "fontHead": "Zen Kaku Gothic Antique", "fontBody": "Zen Kaku Gothic Antique"
+  },
+  "fresh": {
+    "bg": "#F7FBFE", "bgSoft": "#FFFFFF", "ink": "#16294D", "ink2": "#3D5479",
+    "accent": "#1E8FDE", "accent2": "#A9D5F4",
+    "darkBg": "#16294D", "darkInk": "#FFFFFF", "darkSub": "#A9D5F4",
+    "fontHead": "Noto Sans JP", "fontBody": "Noto Sans JP"
+  },
+  "dynamic": {
+    "bg": "#FFFFFF", "bgSoft": "#FFFFFF", "ink": "#111111", "ink2": "#333333",
+    "accent": "#E5006E", "accent2": "#111111",
+    "darkBg": "#111111", "darkInk": "#FFFFFF", "darkSub": "#BBBBBB",
+    "fontHead": "Noto Sans JP", "fontBody": "Noto Sans JP"
+  },
+  "duotone": {
+    "bg": "#FFFFFF", "bgSoft": "#F4F6FB", "ink": "#101A2E", "ink2": "#35415A",
+    "accent": "#1D6BFF", "accent2": "#FFC400",
+    "darkBg": "#101A2E", "darkInk": "#FFFFFF", "darkSub": "#AAB6D0",
+    "fontHead": "Zen Kaku Gothic New", "fontBody": "Zen Kaku Gothic New"
+  }
+}

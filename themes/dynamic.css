@@ -1,0 +1,125 @@
+/* =====================================================================
+   SlideSmith theme: dynamic — ダイナミック・大胆タイポ
+   雰囲気: 疾走感 / 挑戦 / 雑誌の表紙。ブランドビジョン・採用・スポーツ向き。
+   手法: 白地 × ほぼ黒 × ビビッドマゼンタ1色。カバー面は黒地反転。
+         画面から見切れる超巨大文字・斜めのスラッシュ帯・斜体の英字。
+         radius 0・黒2px罫・ベタ落ち影（ぼかさない）。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600..900;1,600..900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+.slide {
+  /* --- 配色: 白 × 黒 × マゼンタ。アクセントの面積は絞って強く --- */
+  --bg:       #FFFFFF;
+  --bg-soft:  #FFFFFF;
+  --ink:      #111111;
+  --ink-2:    #333333;
+  --muted:    #6B6B6B;
+  --line:     #111111;
+  --accent:   #E5006E;   /* ビビッドマゼンタ: 強調語・帯・ヒーロー数字 */
+  --accent-2: #111111;   /* 二番手は黒。色数を増やさない */
+  --on-accent:#FFFFFF;
+
+  /* --- カバー面: 黒地 × 白文字で反転。巨大文字が最も映える面 --- */
+  --cover-bg:    #0C0C0C;
+  --cover-ink:   #FFFFFF;
+  --cover-muted: #9E9E9E;
+
+  /* --- 字組み: 見出しは極太ゴシック。英字アクセントは斜体の Archivo --- */
+  --font-display: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-en:      "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --tracking: 0.01em;
+
+  /* --- 形状: 直角・黒2px罫・ベタ落ち影（ぼかし0のオフセット） --- */
+  --radius: 0;
+  --radius-sm: 0;
+  --card-border: 2px solid var(--ink);
+  --card-shadow: 8px 8px 0 #111111;
+  --mark-radius: 0;
+  --kicker-bar: 14px;
+  --ghost-opacity: 0.9;
+
+  /* --- Phase 2/3 トークン: 傾けない。影はベタ落ちで力強く --- */
+  --hero-tilt: 0deg;
+  --hero-border: 3px solid var(--ink);
+  --hero-shadow: 16px 16px 0 var(--accent);
+  --sticker-border: 2px solid var(--ink);
+
+  /* --- 紙テクスチャをドットから「斜めの細線」に差し替え（疾走感） --- */
+  --texture: repeating-linear-gradient(135deg,
+    color-mix(in srgb, var(--ink) 6%, transparent) 0 2px, transparent 2px 110px);
+  --texture-size: auto;
+}
+
+/* 英字アクセントはすべて斜体（eyebrow / kicker / k-tag） */
+.eyebrow, .kicker, .k-tag {
+  font-family: var(--font-en), sans-serif;
+  font-style: italic;
+  letter-spacing: 0.14em;
+}
+/* kicker の先頭バーは平行四辺形＝スピードブロック */
+.head .kicker::before, .story .kicker::before { transform: skewX(-24deg); border-radius: 0; }
+
+/* 見出しは 900。強調語（<em>）だけがマゼンタ */
+.head h2 { font-weight: 900; letter-spacing: -0.01em; }
+.cover-title { font-weight: 900; font-size: 112px; letter-spacing: -0.01em; line-height: 1.16; }
+.section-title, .closing-title { font-weight: 900; }
+.cover-title em, .closing-title em, .head h2 em, .story h2 em, .quote-text em { color: var(--accent); }
+
+/* 表紙の罫はマゼンタの斜めブロック */
+.cover-rule { background: var(--accent); height: 12px; width: 170px; border-radius: 0; transform: skewX(-24deg); }
+
+/* 章番号: マゼンタのアウトライン巨大数字（濃く出す） */
+.section-num { color: transparent; -webkit-text-stroke: 4px var(--accent); opacity: 0.9; }
+
+/* 締めのCTA: 直角・黒地に白のベタ落ち影 */
+.closing-cta { border-radius: 0; background: var(--accent); box-shadow: 10px 10px 0 #FFFFFF; }
+
+/* 数字は黒で詰める。バッジ・チップも直角に */
+.stat .value { color: var(--ink); letter-spacing: -0.03em; }
+.chip .ico { border-radius: 0; background: var(--ink); color: #FFFFFF; }
+.story .note { border-radius: 0; }
+
+/* ghost（透かしタイポ）は濃いめの輪郭でしっかり見せる */
+.ghost { -webkit-text-stroke: 4px color-mix(in srgb, var(--ink) 16%, transparent); }
+.on-cover .ghost { -webkit-text-stroke-color: color-mix(in srgb, var(--cover-ink) 16%, transparent); }
+
+/* ドーナツ: 黒罫のままだと重いので下地は薄グレー、弧は角を落とさない */
+.donut .track { stroke: #ECECEC; }
+.donut .arc { stroke-linecap: butt; }
+
+/* bars: 角丸をなくし、主役だけマゼンタで叩く */
+.bar-row .track, .bar-row .fill { border-radius: 0; }
+.bar-row .track { border: 2px solid var(--ink); }
+
+/* compare / table の濃面は黒 */
+.panel .panel-head { background: #6B6B6B; }
+.panel.is-good .panel-head { background: var(--accent); }
+
+/* kinetic: このテーマの主役レイアウト。輪郭は太く、帯の影は互いの色で落とす */
+.k-line.k-outline { -webkit-text-stroke: 5px var(--ink); }
+.k-line.k-fill   { box-shadow: 14px 14px 0 var(--accent); }
+.k-line.k-accent { box-shadow: 14px 14px 0 var(--ink); }
+.k-tag { color: var(--accent); }
+
+/* ---------------------------------------------------------------------
+   装飾: 3種のみ。必ず .deco 配下で使う
+   --------------------------------------------------------------------- */
+/* 1. 超巨大見切れ文字。白地では極薄の墨、カバー面では極薄の白 */
+.deco-mega {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 760px; line-height: 0.85; letter-spacing: -0.05em;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+.on-cover .deco-mega { color: color-mix(in srgb, var(--cover-ink) 8%, transparent); }
+/* .is-solid: マゼンタのベタ塗り（黒地カバー専用。文字と重ねない位置に） */
+.deco-mega.is-solid { color: var(--accent); }
+
+/* 2. 斜めのスラッシュ帯（マゼンタ太帯 + 添えの細線） */
+.deco-slash { width: 640px; height: 22px; background: var(--accent); transform: rotate(-24deg); }
+.deco-slash::after {
+  content: ""; position: absolute; left: 96px; top: 46px;
+  width: 470px; height: 8px; background: var(--ink);
+}
+.on-cover .deco-slash::after { background: var(--cover-ink); }
