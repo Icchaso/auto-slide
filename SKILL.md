@@ -42,7 +42,7 @@ npm install          # playwright-core・pptxgenjs が入る。Google Chrome が
 4. **ブランド表記**（左下の名前。例: `サービス名 ｜ 会社名`）
 5. **書き出し形式**（PNG / PDF / PPTX。指定が無ければ PNG＋PDF）
 6. **使ってよい画像**（画面スクショ・写真。無ければ画像を使う型を選ばない）
-7. **動画にするか**（ナレーション動画ツール Slide2Video に入れるなら `"video": true`。依頼に「動画」「ナレーション」「テロップ」が出たら聞かずに付ける）
+※ 動画にするかは**聞かない**。基本はスライド専用（`"video"` は書かない）。依頼に「動画用」「動画に使う」「テロップ」と明記されたときだけ `"video": true` を付ける（下20%を空けて上80%に収める）
 
 | テーマ | 雰囲気 | 向いている用途 |
 |---|---|---|
@@ -97,7 +97,6 @@ npm install          # playwright-core・pptxgenjs が入る。Google Chrome が
 {
   "theme": "fresh",
   "brand": "サービス名 ｜ 会社名",
-  "video": false,
   "slides": [
     { "layout": "cover", "title": "…", "subtitle": "…", "icon": "robot" },
     { "layout": "agenda", "title": "…", "items": [ { "title": "…", "desc": "…" } ] }
@@ -114,7 +113,7 @@ npm install          # playwright-core・pptxgenjs が入る。Google Chrome が
 - [ ] `highlight` で主役を1つ決める（problem / flow / bars / features / table / funnel / pyramid / matrix）。全部同じ重さにしない
 - [ ] 数字は `"1,000枚"` のように単位ごと書く（数字と単位は自動で大小がつく）
 - [ ] `notes` にスピーカーノートを書ける（PPTX のノート欄に入る）
-- [ ] **動画用（`"video": true`）**: 下20%（864px より下）は動画のテロップが重なるので中身を置かない。ブランド名・ページ番号は出ない。本文の高さが約1割狭くなるので**文字数は上限の7割**で書く。帯に入ると `VIDEO_BAND`、入り切らないと `ZONE_OVERFLOW` で止まる → 項目を減らす・2枚に分ける
+- [ ] **動画用と頼まれたときだけ（`"video": true`）**: 下20%（864px より下）は動画のテロップが重なるので中身を置かない。ブランド名・ページ番号は出ない。本文の高さが約1割狭くなるので**文字数は上限の7割**で書く。帯に入ると `VIDEO_BAND`、入り切らないと `ZONE_OVERFLOW` で止まる → 項目を減らす・2枚に分ける
 
 ## STEP 4. 描画と機械検品
 ```bash
