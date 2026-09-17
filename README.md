@@ -63,7 +63,7 @@
 ターミナルに次の1行を貼って Enter を押します。
 
 ```bash
-git clone https://github.com/Icchaso/aute-slide.git ~/.claude/skills/slidesmith && cd ~/.claude/skills/slidesmith && npm install
+git clone https://github.com/Icchaso/auto-slide.git ~/.claude/skills/slidesmith && cd ~/.claude/skills/slidesmith && npm install
 ```
 
 Windows の場合は、保存先を `%USERPROFILE%\.claude\skills\slidesmith` に読み替えてください。
