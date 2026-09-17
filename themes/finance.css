@@ -1,0 +1,45 @@
+/* =====================================================================
+   SlideSmith theme: finance — 堅実・信頼
+   雰囲気: 堅実 / 誠実 / 長く付き合える。税理士・社労士・保険・金融・コンサル向き。
+   手法: アイボリー地 × 深い森の緑 × 真鍮色を極小面積。
+         角は小さく・罫線はっきり・影なし。「数字を預けられる」硬さ。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+.slide {
+  --bg:       #FAF8F2;
+  --bg-soft:  #FFFFFF;
+  --ink:      #14261F;   /* ほぼ黒の深緑 */
+  --ink-2:    #3C4C45;
+  --muted:    #727D77;
+  --line:     #DEDBD0;
+  --accent:   #1D5C44;   /* フォレストグリーン */
+  --accent-2: #B8964F;   /* 真鍮 */
+  --on-accent:#FFFFFF;
+
+  --cover-bg:    #14261F;
+  --cover-ink:   #FAF8F2;
+  --cover-muted: #B9C2BC;
+
+  --font-display: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.02em;
+
+  --radius: 6px;
+  --radius-sm: 4px;
+  --card-border: 1px solid #CFCBBD;
+  --card-shadow: none;
+  --ghost-opacity: 0.06;
+}
+
+/* 型エンジン: 影を消して罫で組む。罫と見出しのしるしは真鍮 */
+.slide.x-slide { --shadow: none; }
+.slide.x-slide .x-kicker::before { background: var(--accent-2); height: 3px; border-radius: 0; }
+.slide.x-slide .x-rule { border-radius: 0; height: 4px; background: var(--accent-2); }
+.slide.x-slide .x-title em { background: none; color: var(--acc-ink); border-bottom: 4px solid color-mix(in srgb, var(--accent-2) 70%, transparent); }
+.slide.x-slide .x-icon-tile { border-radius: 8px; box-shadow: none; }
+.slide.x-slide .x-sticker { border-radius: 4px; box-shadow: none; }
+
+/* 旧HTMLルート用 */
+.cover-rule { background: var(--accent-2); height: 3px; width: 120px; }
+.head h2 em { border-bottom: 4px solid rgba(184, 150, 79, 0.6); }

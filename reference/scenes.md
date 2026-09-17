@@ -38,7 +38,7 @@
 | 14 | timeline | 導入スケジュール |
 | 15 | faq | 導入前の不安（あれば） |
 | 16 | closing | 次の行動を1つ |
-- テーマ: fresh / corporate / duotone ／ 見本: `examples/inquiry-ai-proposal/`
+- テーマ: fresh / corporate / duotone（業種が決まっていれば medical / estate / finance / industrial も可）／ 見本: `examples/inquiry-ai-proposal/`
 
 ## B. セミナー・講座
 **聞き手の頭の動き**: 自分ごと化 → 考えてみる → 教わる → 手を動かす → 持ち帰る
@@ -58,7 +58,7 @@
 | 12 | summary | 今日のまとめ |
 | 13 | closing | 次の講座・相談・アンケート |
 - 章ごとに「section → 図解 → question（ワーク）」を1セットにすると単調にならない
-- テーマ: pop（SNS・初心者向け）/ corporate（経営者向け）/ warm（ワークショップ）
+- テーマ: pop（SNS・初心者向け）/ corporate（経営者向け）/ warm（ワークショップ）/ luxury（高額講座）/ kids（子ども・保護者向け）/ fitness（運動・健康）
 
 ## C. 会社説明・採用
 | # | 型 | 中身 |
@@ -76,7 +76,7 @@
 | 11 | table / spec | 募集要項・待遇 |
 | 12 | faq | 応募前によくある質問 |
 | 13 | closing | 応募・説明会の申し込み |
-- テーマ: fresh（採用）/ corporate（会社案内）/ dynamic（ビジョン重視）
+- テーマ: fresh（採用）/ corporate（会社案内）/ dynamic（ビジョン重視）/ industrial（建設・製造）/ public（自治体・学校）
 
 ## D. 社内報告・定例
 **結論が先**。報告を聞く人は「で、どうする？」を知りたい
@@ -92,7 +92,7 @@
 | 8 | table | 次のアクション（何を・誰が・いつまで） |
 | 9 | closing | 決めてほしいこと（承認・判断） |
 - 社内向けは agenda・section を省いてよい（10枚以下なら事前チェックの注意だけで止まらない）
-- テーマ: corporate / minimal
+- テーマ: corporate / minimal / nordic
 
 ## E. 事業計画・ピッチ
 | # | 型 | 中身 |
@@ -110,7 +110,7 @@
 | 11 | timeline | マイルストーン |
 | 12 | big-number | 調達額・お願いしたいこと |
 | 13 | closing | 連絡先 |
-- テーマ: tech / duotone / dynamic
+- テーマ: tech / duotone / dynamic / gradient
 
 ## F. イベント・募集告知
 | # | 型 | 中身 |
@@ -124,7 +124,7 @@
 | 7 | spec | 開催概要（日時・場所・定員・参加費・持ち物） |
 | 8 | faq | よくある質問 |
 | 9 | closing | 申し込み方法 |
-- テーマ: pop / warm / feminine ／ 見本: `examples/cafe-workshop/`
+- テーマ: pop / warm / feminine / neon（夜・ゲーム）/ resort（観光）/ kids（親子）／ 見本: `examples/cafe-workshop/`
 
 ## G. 研修・マニュアル
 | # | 型 | 中身 |
@@ -140,7 +140,7 @@
 | 9 | checklist | 作業前・作業後のチェックリスト |
 | 10 | faq | よくあるつまずき |
 | 11 | closing | 困ったときの連絡先 |
-- テーマ: fresh / corporate
+- テーマ: fresh / corporate / public / industrial（安全講習）
 
 ## H. 事例紹介・講演
 | # | 型 | 中身 |
@@ -155,7 +155,7 @@
 | 8 | quote / testimonial | 本人の言葉 |
 | 9 | summary | 学び・再現のポイント |
 | 10 | closing | 問い合わせ・次回 |
-- テーマ: corporate / warm / dynamic
+- テーマ: corporate / warm / dynamic / medical / estate
 
 ---
 

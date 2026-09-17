@@ -1,0 +1,49 @@
+/* =====================================================================
+   SlideSmith theme: kids — 教育・子ども
+   雰囲気: わくわく / 安心 / にぎやか。習い事・塾・子育て講座・保育園の説明会向き。
+   手法: クリーム地 × 紺の文字 × 赤・青・黄・緑の原色をカードごとに回す。
+         丸ゴシック・大きい角丸・太い枠＋ずらし影（積み木・シール感）。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&display=swap');
+
+.slide {
+  --bg:       #FFFBEF;
+  --bg-soft:  #FFFFFF;
+  --ink:      #1F2A55;   /* 紺 */
+  --ink-2:    #3F4A73;
+  --muted:    #737A99;
+  --line:     #EFE6CC;
+  --accent:   #2F7FE0;   /* 青（主役） */
+  --accent-2: #FFC53D;   /* 黄 */
+  --on-accent:#FFFFFF;
+
+  --cover-bg:    #FFFBEF;
+  --cover-ink:   #1F2A55;
+  --cover-muted: #5B6389;
+
+  --font-display: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.03em;
+
+  --radius: 30px;
+  --radius-sm: 18px;
+  --card-border: 3px solid var(--ink);
+  --card-shadow: 6px 6px 0 var(--ink);
+  --ghost-opacity: 0.08;
+}
+
+/* 型エンジン: カード類は太枠＋ずらし影、アイコンは色を回す */
+.slide.x-slide { --shadow: 6px 6px 0 var(--ink); --hair: color-mix(in srgb, var(--ink) 22%, var(--bg)); }
+.slide.x-slide.x-dark { --shadow: 6px 6px 0 rgba(0, 0, 0, 0.45); }
+.slide.x-slide .x-title em { background: linear-gradient(transparent 58%, color-mix(in srgb, var(--accent-2) 70%, transparent) 58%); }
+.slide.x-slide .x-icon-tile { border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); }
+.slide.x-slide :nth-child(4n+2) > .x-icon-tile { background: #E5484D; }
+.slide.x-slide :nth-child(4n+3) > .x-icon-tile { background: #2FA36B; }
+.slide.x-slide .x-sticker { border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.slide.x-slide .x-kicker::before { width: 18px; height: 18px; border-radius: 50%; background: var(--accent-2); box-shadow: 26px 0 0 #E5484D, 52px 0 0 #2FA36B; margin-right: 52px; }
+
+/* 旧HTMLルート用 */
+.card .badge, .vlist .badge, .step .badge { border: 3px solid var(--ink); }
+.card:nth-child(4n+2) .badge { background: #E5484D; }
+.card:nth-child(4n+3) .badge { background: #2FA36B; }
+.head h2 em { background: linear-gradient(transparent 58%, rgba(255, 197, 61, 0.7) 58%); }

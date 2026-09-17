@@ -1,0 +1,45 @@
+/* =====================================================================
+   SlideSmith theme: nordic — 北欧・くすみ色
+   雰囲気: 静か / ていねい / 余白。インテリア・ライフスタイル・雑貨・北欧系ブランド向き。
+   手法: グレージュ地 × スレートの文字 × くすみブルー、差し色にくすみテラコッタ少量。
+         影なし・角は中くらい・細い罫。装飾は控えめに。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
+
+.slide {
+  --bg:       #F3F1EC;   /* グレージュ */
+  --bg-soft:  #FBFAF7;
+  --ink:      #2E3438;   /* スレート */
+  --ink-2:    #545B60;
+  --muted:    #878C8E;
+  --line:     #DEDAD2;
+  --accent:   #5E7F99;   /* くすみブルー */
+  --accent-2: #C98E73;   /* くすみテラコッタ */
+  --on-accent:#FFFFFF;
+
+  --cover-bg:    #E7E3DA;
+  --cover-ink:   #2E3438;
+  --cover-muted: #6F7477;
+
+  --font-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.04em;
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --card-border: 1px solid var(--line);
+  --card-shadow: none;
+  --ghost-opacity: 0.05;
+}
+
+/* 型エンジン: 影なし・点々模様を消して余白で見せる */
+.slide.x-slide { --shadow: none; }
+.slide.x-slide .x-dots { display: none; }
+.slide.x-slide .x-title { font-weight: 700; }
+.slide.x-slide .x-kicker::before { background: var(--accent-2); }
+.slide.x-slide .x-title em { background: none; color: var(--acc-ink); }
+.slide.x-slide .x-icon-tile { background: color-mix(in srgb, var(--accent) 85%, var(--bg)); box-shadow: none; border-radius: 50%; }
+.slide.x-slide .x-sticker { box-shadow: none; }
+
+/* 旧HTMLルート用 */
+.cover-rule { background: var(--accent-2); height: 3px; width: 90px; }

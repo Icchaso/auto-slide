@@ -1,0 +1,43 @@
+/* =====================================================================
+   SlideSmith theme: estate — 住まい・暮らしの温度
+   雰囲気: あたたかい / 落ち着き / 生活感。不動産・物件紹介・工務店・リノベ向き。
+   手法: 明るいオーク材のベージュ地 × チャコール × 木の茶色。
+         角は控えめ（住宅図面のきちんと感）、影は柔らかく。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
+
+.slide {
+  --bg:       #F8F4EE;
+  --bg-soft:  #FFFDF9;
+  --ink:      #2B2825;   /* チャコール */
+  --ink-2:    #534C45;
+  --muted:    #8A8076;
+  --line:     #E6DCCF;
+  --accent:   #B0763F;   /* オーク材の茶 */
+  --accent-2: #7E9A7B;   /* 植栽のセージグリーン */
+  --on-accent:#FFFFFF;
+
+  --cover-bg:    #2B2825;
+  --cover-ink:   #F8F4EE;
+  --cover-muted: #C9BBAA;
+
+  --font-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.03em;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --card-border: 1px solid var(--line);
+  --card-shadow: 0 10px 30px rgba(80, 55, 30, 0.08);
+  --ghost-opacity: 0.08;
+}
+
+/* 型エンジン: 見出しのしるしは「屋根」の小さな山形、罫は木→緑 */
+.slide.x-slide .x-kicker::before { width: 30px; height: 30px; border-radius: 0; background: none;
+  border-top: 5px solid var(--acc); border-left: 5px solid var(--acc); transform: translateY(8px) rotate(45deg); }
+.slide.x-slide .x-rule { border-radius: 0; }
+.slide.x-slide .x-title em { background: linear-gradient(transparent 70%, color-mix(in srgb, var(--accent) 22%, transparent) 70%); }
+
+/* 旧HTMLルート用 */
+.cover-rule { background: var(--accent); height: 4px; width: 100px; }
+.head h2 em { background: linear-gradient(transparent 70%, rgba(176, 118, 63, 0.22) 70%); }

@@ -1,0 +1,44 @@
+/* =====================================================================
+   SlideSmith theme: public — 公共・読みやすさ最優先
+   雰囲気: 公正 / わかりやすい / だれにでも。自治体・学校・住民説明会・公共事業・PTA向き。
+   手法: 白地 × 濃紺の文字 × 誠実な青緑。書体はユニバーサルデザインの BIZ UDPゴシック。
+         装飾は最小、色だけに頼らず太さと罫で区別する。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap');
+
+.slide {
+  --bg:       #FFFFFF;
+  --bg-soft:  #F4F7F9;
+  --ink:      #0F2438;   /* 濃紺 */
+  --ink-2:    #33485C;
+  --muted:    #5F7082;
+  --line:     #D3DCE4;
+  --accent:   #00758A;   /* 青緑 */
+  --accent-2: #3D8BD4;
+  --on-accent:#FFFFFF;
+
+  --cover-bg:    #FFFFFF;
+  --cover-ink:   #0F2438;
+  --cover-muted: #4E6073;
+
+  --font-display: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.02em;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --card-border: 2px solid var(--line);
+  --card-shadow: none;
+  --ghost-opacity: 0.05;
+}
+
+/* 型エンジン: 装飾を減らし、罫と太さで区切る（BIZ UDは700まで） */
+.slide.x-slide { --shadow: none; }
+.slide.x-slide .x-dots, .slide.x-slide .x-orb { display: none; }
+.slide.x-slide .x-title, .slide.x-slide .x-kicker { font-weight: 700; }
+.slide.x-slide .x-title em { background: none; color: var(--acc-ink); text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 10px; }
+.slide.x-slide .x-icon-tile { box-shadow: none; border-radius: 12px; }
+.slide.x-slide .x-sticker { box-shadow: none; }
+
+/* 旧HTMLルート用 */
+.cover-rule { background: var(--accent); height: 6px; width: 120px; }

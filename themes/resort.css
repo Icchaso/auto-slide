@@ -1,0 +1,44 @@
+/* =====================================================================
+   SlideSmith theme: resort — 観光・リゾート
+   雰囲気: 開放感 / 休日 / 期待。観光・ホテル・旅館以外の宿泊施設・旅行プラン・地域PR向き。
+   手法: 砂浜のサンド地 × 深い海の紺 × ターコイズ、差し色に夕日のコーラルを少量。
+         丸ゴシック・大きめの角丸・波のような柔らかいグラデ。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap');
+
+.slide {
+  --bg:       #FBF7EF;   /* サンド */
+  --bg-soft:  #FFFFFF;
+  --ink:      #0E3140;   /* 深い海 */
+  --ink-2:    #355664;
+  --muted:    #6D8791;
+  --line:     #EADFCB;
+  --accent:   #0FA3B1;   /* ターコイズ */
+  --accent-2: #F28B66;   /* 夕日のコーラル */
+  --on-accent:#FFFFFF;
+
+  --cover-bg:    linear-gradient(180deg, #D9F2F2 0%, #FBF7EF 70%);
+  --cover-ink:   #0E3140;
+  --cover-muted: #4F6F7A;
+
+  --font-display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.03em;
+
+  --radius: 26px;
+  --radius-sm: 16px;
+  --card-border: 1px solid var(--line);
+  --card-shadow: 0 14px 36px rgba(14, 49, 64, 0.08);
+  --ghost-opacity: 0.08;
+}
+
+/* 型エンジン: 暗い面は「夜の海」グラデ、罫は海→夕日 */
+.slide.x-slide.x-dark { background: linear-gradient(170deg, #0B3A4A 0%, #0A2733 60%, #081C25 100%); }
+.slide.x-slide .x-rule { background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.slide.x-slide .x-kicker::before { background: var(--accent-2); }
+.slide.x-slide .x-title em { background: linear-gradient(transparent 64%, color-mix(in srgb, var(--accent) 22%, transparent) 64%); }
+.slide.x-slide .x-icon-tile { background: linear-gradient(135deg, var(--accent), #3FC1C9); }
+.slide.x-slide .x-orb-b { background: radial-gradient(circle, rgba(242, 139, 102, 0.26), transparent 70%); }
+
+/* 旧HTMLルート用 */
+.cover-rule { background: linear-gradient(90deg, var(--accent), var(--accent-2)); height: 5px; width: 110px; }

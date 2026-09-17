@@ -1,0 +1,58 @@
+/* =====================================================================
+   SlideSmith theme: neon — ネオン・サイバー
+   雰囲気: 夜 / 熱狂 / エンタメ。eスポーツ・ゲーム・クラブ/夜のイベント・配信者向き。
+   手法: 黒紫の地 × ホットピンク（主役）× シアン（二番手）の発光。
+         英数は幾何学系、罫・アイコンに光のにじみ。tech より派手で遊びがある。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap');
+
+.slide {
+  --bg:       #0E0718;
+  --bg-soft:  #180E28;
+  --ink:      #F5EEFF;
+  --ink-2:    #CBBDE6;
+  --muted:    #9384B3;
+  --line:     #2C1E45;
+  --accent:   #FF3EA5;   /* ホットピンク */
+  --accent-2: #2EE6F0;   /* シアン */
+  --on-accent:#16041A;
+
+  --cover-bg:    #08040F;
+  --cover-ink:   #FFF5FC;
+  --cover-muted: #A594C8;
+
+  --font-display: "Space Grotesk", "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.03em;
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --card-border: 1px solid rgba(255, 62, 165, 0.32);
+  --card-shadow: 0 0 36px rgba(255, 62, 165, 0.1);
+  --ghost-opacity: 0.1;
+}
+
+/* 型エンジン: ピンクとシアンの発光 */
+.slide.x-slide { --shadow: 0 0 40px rgba(255, 62, 165, 0.14); }
+.slide.x-slide .x-rule, .slide.x-slide .x-kicker::before { background: linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow: 0 0 18px rgba(255, 62, 165, 0.7); }
+.slide.x-slide .x-icon-tile { background: linear-gradient(135deg, var(--accent), #B14DFF); box-shadow: 0 0 34px rgba(255, 62, 165, 0.5); }
+.slide.x-slide .x-title em { background: none; text-shadow: 0 0 30px rgba(255, 62, 165, 0.55); }
+.slide.x-slide .x-orb-b { background: radial-gradient(circle, rgba(46, 230, 240, 0.28), transparent 70%); }
+
+/* 旧HTMLルート用 */
+.cover-title em, .closing-title em { color: var(--accent); text-shadow: 0 0 40px rgba(255, 62, 165, 0.6); }
+.cover-rule { background: linear-gradient(90deg, var(--accent), var(--accent-2)); height: 4px; width: 120px; box-shadow: 0 0 24px rgba(255, 62, 165, 0.6); }
+
+/* 暗い面も夜のまま（反転させない）。ピンクとシアンの光だまりで本文面と差をつける */
+.slide.x-slide.x-dark {
+  --surface: #07030E; --card: #1A0F2C;
+  --fg: var(--ink);
+  --fg-body: color-mix(in srgb, var(--ink) 90%, #07030E);
+  --fg-muted: color-mix(in srgb, var(--ink) 70%, #07030E);
+  --acc-ink: var(--accent); --acc-big: var(--accent); --acc-fill: var(--accent);
+  --acc-soft: color-mix(in srgb, var(--accent) 20%, #07030E);
+  --acc-line: color-mix(in srgb, var(--accent) 45%, #07030E);
+  --hair: rgba(255, 62, 165, 0.25);
+  background: radial-gradient(ellipse at 85% 15%, rgba(255, 62, 165, 0.22), transparent 55%),
+              radial-gradient(ellipse at 10% 95%, rgba(46, 230, 240, 0.16), transparent 50%), #07030E;
+}

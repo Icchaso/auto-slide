@@ -1,0 +1,50 @@
+/* =====================================================================
+   SlideSmith theme: medical — 清潔・安心
+   雰囲気: 清潔 / やさしい / 信頼。治療院・クリニック・健康講座・介護向き。
+   手法: ほぼ白の地 × 深い青緑の文字 × ミントグリーン。角丸やわらか・影はごく薄く。
+         「病院の冷たさ」ではなく「通いたくなる安心感」を狙う。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+.slide {
+  --bg:       #F6FBF9;
+  --bg-soft:  #FFFFFF;
+  --ink:      #123B3A;   /* 深い青緑（本文） */
+  --ink-2:    #3A5E5C;
+  --muted:    #6F8C89;
+  --line:     #D6EBE5;
+  --accent:   #13896F;   /* ミントグリーン（小さい文字でも読める濃さ） */
+  --accent-2: #8FD9C4;   /* 淡いミント */
+  --on-accent:#FFFFFF;
+
+  --cover-bg:    linear-gradient(160deg, #FFFFFF 0%, #EAF7F2 55%, #D5EFE6 100%);
+  --cover-ink:   #123B3A;
+  --cover-muted: #55807B;
+
+  --font-display: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.02em;
+
+  --radius: 24px;
+  --radius-sm: 14px;
+  --card-border: 1px solid var(--line);
+  --card-shadow: 0 8px 28px rgba(31, 169, 138, 0.08);
+  --ghost-opacity: 0.08;
+}
+
+/* 型エンジン: 見出しの強調は淡いミントのマーカー、アイコンは丸く */
+.slide.x-slide .x-title em { background: linear-gradient(transparent 62%, color-mix(in srgb, var(--accent-2) 55%, transparent) 62%); }
+.slide.x-slide .x-icon-tile { border-radius: 50%; }
+.slide.x-slide .x-kicker::before { width: 14px; height: 14px; border-radius: 50%; }
+
+/* 旧HTMLルート用 */
+.cover-rule { background: linear-gradient(90deg, var(--accent), var(--accent-2)); height: 5px; width: 110px; }
+.head h2 em { background: linear-gradient(transparent 62%, rgba(143, 217, 196, 0.5) 62%); }
+.deco-cross {
+  right: 120px; top: 110px; width: 160px; height: 160px; opacity: 0.12;
+  background: linear-gradient(var(--accent), var(--accent)) center/52px 100% no-repeat,
+              linear-gradient(var(--accent), var(--accent)) center/100% 52px no-repeat;
+}
+
+/* 暗い面は深い青緑→ミントのグラデ（finance の森の緑と見分けるため、明るく澄んだ緑に寄せる） */
+.slide.x-slide.x-dark { background: linear-gradient(135deg, #0C4A45 0%, #0F6B5C 60%, #178A76 100%); }

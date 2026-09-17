@@ -65,5 +65,77 @@
     "accent": "#1D6BFF", "accent2": "#FFC400",
     "darkBg": "#101A2E", "darkInk": "#FFFFFF", "darkSub": "#AAB6D0",
     "fontHead": "Zen Kaku Gothic New", "fontBody": "Zen Kaku Gothic New"
+  },
+  "medical": {
+    "bg": "#F6FBF9", "bgSoft": "#FFFFFF", "ink": "#123B3A", "ink2": "#3A5E5C",
+    "accent": "#13896F", "accent2": "#8FD9C4",
+    "darkBg": "#0F6B5C", "darkInk": "#FFFFFF", "darkSub": "#BDEBDD",
+    "fontHead": "Noto Sans JP", "fontBody": "Noto Sans JP"
+  },
+  "estate": {
+    "bg": "#F8F4EE", "bgSoft": "#FFFDF9", "ink": "#2B2825", "ink2": "#534C45",
+    "accent": "#B0763F", "accent2": "#7E9A7B",
+    "darkBg": "#2B2825", "darkInk": "#F8F4EE", "darkSub": "#C9BBAA",
+    "fontHead": "Zen Kaku Gothic New", "fontBody": "Zen Kaku Gothic New"
+  },
+  "finance": {
+    "bg": "#FAF8F2", "bgSoft": "#FFFFFF", "ink": "#14261F", "ink2": "#3C4C45",
+    "accent": "#1D5C44", "accent2": "#B8964F",
+    "darkBg": "#14261F", "darkInk": "#FAF8F2", "darkSub": "#B9C2BC",
+    "fontHead": "Noto Sans JP", "fontBody": "Noto Sans JP"
+  },
+  "kids": {
+    "bg": "#FFFBEF", "bgSoft": "#FFFFFF", "ink": "#1F2A55", "ink2": "#3F4A73",
+    "accent": "#2F7FE0", "accent2": "#FFC53D",
+    "darkBg": "#1F2A55", "darkInk": "#FFFFFF", "darkSub": "#FFC53D",
+    "fontHead": "M PLUS Rounded 1c", "fontBody": "M PLUS Rounded 1c"
+  },
+  "gradient": {
+    "bg": "#FBFAFF", "bgSoft": "#FFFFFF", "ink": "#1E1B4B", "ink2": "#45407A",
+    "accent": "#7C3AED", "accent2": "#EC4899",
+    "darkBg": "#3B1E77", "darkInk": "#FFFFFF", "darkSub": "#E4DCFF",
+    "fontHead": "Noto Sans JP", "fontBody": "Noto Sans JP"
+  },
+  "luxury": {
+    "bg": "#0D0C0A", "bgSoft": "#17150F", "ink": "#F3EEE3", "ink2": "#CFC6B3",
+    "accent": "#D4AF6A", "accent2": "#8C7440",
+    "darkBg": "#050404", "darkInk": "#F6F1E6", "darkSub": "#A89D86",
+    "fontHead": "Zen Kaku Gothic New", "fontBody": "Zen Kaku Gothic New"
+  },
+  "neon": {
+    "bg": "#0E0718", "bgSoft": "#180E28", "ink": "#F5EEFF", "ink2": "#CBBDE6",
+    "accent": "#FF3EA5", "accent2": "#2EE6F0",
+    "darkBg": "#07030E", "darkInk": "#FFF5FC", "darkSub": "#A594C8",
+    "fontHead": "Space Grotesk", "fontBody": "Zen Kaku Gothic New"
+  },
+  "nordic": {
+    "bg": "#F3F1EC", "bgSoft": "#FBFAF7", "ink": "#2E3438", "ink2": "#545B60",
+    "accent": "#5E7F99", "accent2": "#C98E73",
+    "darkBg": "#2E3438", "darkInk": "#F3F1EC", "darkSub": "#B9BDBF",
+    "fontHead": "Zen Kaku Gothic New", "fontBody": "Zen Kaku Gothic New"
+  },
+  "industrial": {
+    "bg": "#F7F7F5", "bgSoft": "#FFFFFF", "ink": "#151515", "ink2": "#3B3B3B",
+    "accent": "#F2B705", "accent2": "#151515",
+    "darkBg": "#151515", "darkInk": "#FFFFFF", "darkSub": "#F2B705",
+    "fontHead": "Noto Sans JP", "fontBody": "Noto Sans JP"
+  },
+  "public": {
+    "bg": "#FFFFFF", "bgSoft": "#F4F7F9", "ink": "#0F2438", "ink2": "#33485C",
+    "accent": "#00758A", "accent2": "#3D8BD4",
+    "darkBg": "#0F2438", "darkInk": "#FFFFFF", "darkSub": "#A9D3DC",
+    "fontHead": "BIZ UDPGothic", "fontBody": "BIZ UDPGothic"
+  },
+  "resort": {
+    "bg": "#FBF7EF", "bgSoft": "#FFFFFF", "ink": "#0E3140", "ink2": "#355664",
+    "accent": "#0FA3B1", "accent2": "#F28B66",
+    "darkBg": "#0A2733", "darkInk": "#FFFFFF", "darkSub": "#9FDDE2",
+    "fontHead": "Zen Maru Gothic", "fontBody": "Zen Maru Gothic"
+  },
+  "fitness": {
+    "bg": "#FAFAF8", "bgSoft": "#FFFFFF", "ink": "#17181A", "ink2": "#3E4044",
+    "accent": "#FF5A1F", "accent2": "#FFB020",
+    "darkBg": "#17181A", "darkInk": "#FFFFFF", "darkSub": "#B7B8BB",
+    "fontHead": "Noto Sans JP", "fontBody": "Noto Sans JP"
   }
 }

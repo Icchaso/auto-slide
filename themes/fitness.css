@@ -1,0 +1,46 @@
+/* =====================================================================
+   SlideSmith theme: fitness — フィットネス・エネルギー
+   雰囲気: 前向き / 汗 / 変化。ジム・パーソナルトレーニング・運動指導・スポーツ教室向き。
+   手法: 白地 × 墨 × エナジーオレンジ。暗い面は墨、斜めの帯と極太見出しで勢いを出す。
+         角は小さめ・ずらし影なし・オレンジは面積を絞る。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+.slide {
+  --bg:       #FAFAF8;
+  --bg-soft:  #FFFFFF;
+  --ink:      #17181A;   /* 墨 */
+  --ink-2:    #3E4044;
+  --muted:    #75777B;
+  --line:     #E3E3E0;
+  --accent:   #FF5A1F;   /* エナジーオレンジ */
+  --accent-2: #FFB020;   /* アンバー */
+  --on-accent:#FFFFFF;
+
+  --cover-bg:    #17181A;
+  --cover-ink:   #FFFFFF;
+  --cover-muted: #B7B8BB;
+
+  --font-display: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.01em;
+
+  --radius: 8px;
+  --radius-sm: 4px;
+  --card-border: 1px solid var(--line);
+  --card-shadow: 0 12px 32px rgba(23, 24, 26, 0.08);
+  --ghost-opacity: 0.08;
+}
+
+/* 型エンジン: 極太見出し・斜めの札・斜めの罫 */
+.slide.x-slide .x-title { font-weight: 900; letter-spacing: 0; }
+.slide.x-slide .x-kicker { font-style: italic; }
+.slide.x-slide .x-kicker::before { border-radius: 0; transform: skewX(-24deg); width: 56px; height: 10px; }
+.slide.x-slide .x-rule { border-radius: 0; transform: skewX(-24deg); height: 12px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.slide.x-slide .x-title em { background: linear-gradient(transparent 60%, color-mix(in srgb, var(--accent) 24%, transparent) 60%); }
+.slide.x-slide .x-icon-tile { border-radius: 10px; transform: skewX(-6deg); }
+.slide.x-slide .x-sticker { border-radius: 4px; transform: skewX(-10deg); }
+.slide.x-slide .x-sticker.is-tilt { transform: skewX(-10deg) rotate(3deg); }
+
+/* 旧HTMLルート用 */
+.cover-rule { transform: skewX(-24deg); height: 10px; width: 120px; background: var(--accent); }

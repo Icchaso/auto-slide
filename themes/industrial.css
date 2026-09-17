@@ -1,0 +1,60 @@
+/* =====================================================================
+   SlideSmith theme: industrial — 建設・製造・力強さ
+   雰囲気: 頑丈 / 実直 / 現場。建設・製造・物流・安全講習・設備会社の会社案内向き。
+   手法: 白地 × ほぼ黒 × 安全イエロー。角なし・黒の太罫・ずらし影なし。
+         黄色は面で使い、その上の文字は必ず黒（白を載せない）。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+.slide {
+  --bg:       #F7F7F5;
+  --bg-soft:  #FFFFFF;
+  --ink:      #151515;
+  --ink-2:    #3B3B3B;
+  --muted:    #717171;
+  --line:     #DADADA;
+  --accent:   #F2B705;   /* 安全イエロー */
+  --accent-2: #151515;
+  --on-accent:#151515;   /* 黄の上は黒文字 */
+
+  --cover-bg:    #151515;
+  --cover-ink:   #FFFFFF;
+  --cover-muted: #BDBDBD;
+
+  --font-display: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.02em;
+
+  --radius: 0px;
+  --radius-sm: 0px;
+  --card-border: 2px solid #151515;
+  --card-shadow: none;
+  --ghost-opacity: 0.06;
+}
+
+/* 型エンジン: 黄は「面」で使い、文字色は黒。細かい黄文字は濃い黄土色で読ませる */
+.slide.x-slide {
+  --shadow: none;
+  --acc-ink: #6B4E00;
+  --acc-big: #151515;
+  --acc-fill: #F2B705;
+  --acc-soft: #FCE9A8;
+  --hair: #CFCFCF;
+}
+.slide.x-slide.x-dark { --acc-ink: #F2B705; --acc-big: #F2B705; --acc-fill: #F2B705; --acc-soft: #3A3108; }
+.slide.x-slide .x-title { font-weight: 900; }
+.slide.x-slide .x-title em { color: var(--fg); background: linear-gradient(transparent 55%, #F2B705 55%); }
+.slide.x-slide.x-dark .x-title em { color: #F2B705; background: none; }
+.slide.x-slide .x-kicker::before { height: 14px; width: 60px; border-radius: 0;
+  background: repeating-linear-gradient(-45deg, #F2B705 0 10px, #151515 10px 20px); }
+.slide.x-slide .x-rule { border-radius: 0; height: 14px; background: repeating-linear-gradient(-45deg, #F2B705 0 14px, #151515 14px 28px); }
+.slide.x-slide .x-icon-tile { border-radius: 0; background: #F2B705; color: #151515; box-shadow: none; border: 2px solid #151515; }
+.slide.x-slide .x-sticker { border-radius: 0; color: #151515; box-shadow: none; }
+
+/* 旧HTMLルート用 */
+.cover-rule { height: 12px; width: 140px; background: repeating-linear-gradient(-45deg, #F2B705 0 12px, #151515 12px 24px); }
+
+/* 強調の行は黒地になるので、その上の文字は黄にする（黒地×黒文字を防ぐ） */
+.slide.x-slide .x-flow-node.is-hl .x-node-no,
+.slide.x-slide .x-pyr-row.is-hl .x-pyr-shape,
+.slide.x-slide .x-fn-row.is-hl .x-fn-bar { color: #F2B705; }

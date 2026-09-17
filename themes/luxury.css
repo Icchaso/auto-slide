@@ -1,0 +1,61 @@
+/* =====================================================================
+   SlideSmith theme: luxury — 黒×金・現代的な高級感
+   雰囲気: 特別 / 上質 / 大人。高額講座・会員制サービス・ハイエンド商品・VIP向け案内向き。
+   手法: 全面ほぼ黒 × シャンパンゴールド。明朝は使わずゴシックで「現代の高級」。
+         角は小さく・影なし・金の細い罫線・字間を広めに。
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
+
+.slide {
+  --bg:       #0D0C0A;
+  --bg-soft:  #17150F;
+  --ink:      #F3EEE3;   /* 生成り白 */
+  --ink-2:    #CFC6B3;
+  --muted:    #968C78;
+  --line:     #2E2A20;
+  --accent:   #D4AF6A;   /* シャンパンゴールド */
+  --accent-2: #8C7440;   /* 渋い金 */
+  --on-accent:#14110A;   /* 金の上は濃色文字 */
+
+  --cover-bg:    #070605;
+  --cover-ink:   #F6F1E6;
+  --cover-muted: #A89D86;
+
+  --font-display: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --font-body:    "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  --tracking: 0.06em;
+
+  --radius: 4px;
+  --radius-sm: 2px;
+  --card-border: 1px solid rgba(212, 175, 106, 0.35);
+  --card-shadow: none;
+  --ghost-opacity: 0.06;
+}
+
+/* 型エンジン: 影なし・金の細罫。見出しは字間を広く */
+.slide.x-slide { --shadow: none; --hair: rgba(212, 175, 106, 0.28); }
+.slide.x-slide .x-title { letter-spacing: 0.06em; }
+.slide.x-slide .x-kicker { letter-spacing: 0.3em; }
+.slide.x-slide .x-kicker::before { height: 1px; width: 64px; border-radius: 0; }
+.slide.x-slide .x-rule { height: 1px; width: 160px; border-radius: 0; background: var(--acc); }
+.slide.x-slide .x-title em { background: none; }
+.slide.x-slide .x-icon-tile { border-radius: 50%; background: transparent; color: var(--acc); border: 1px solid var(--acc); box-shadow: none; }
+.slide.x-slide .x-sticker { border-radius: 2px; box-shadow: none; }
+.slide.x-slide .x-dots { opacity: 0.4; }
+
+/* 旧HTMLルート用 */
+.cover-rule { background: var(--accent); height: 1px; width: 160px; }
+.deco-frame-gold { inset: 44px; border: 1px solid rgba(212, 175, 106, 0.35); }
+
+/* 暗い面も黒のまま（エンジン既定だと地が暗いテーマは明るく反転する。高級感を保つため反転させない） */
+.slide.x-slide.x-dark {
+  --surface: #050404; --card: #15130E;
+  --fg: var(--ink);
+  --fg-body: color-mix(in srgb, var(--ink) 90%, #050404);
+  --fg-muted: color-mix(in srgb, var(--ink) 70%, #050404);
+  --acc-ink: var(--accent); --acc-big: var(--accent); --acc-fill: var(--accent);
+  --acc-soft: color-mix(in srgb, var(--accent) 16%, #050404);
+  --acc-line: color-mix(in srgb, var(--accent) 45%, #050404);
+  --hair: rgba(212, 175, 106, 0.28);
+  background: radial-gradient(ellipse at 80% 20%, #1E1A10 0%, #050404 60%);
+}
